@@ -26,9 +26,9 @@ public:
 private:
     void execute() final;
 
-    ::estd::forward_list<StorageJob> _jobs;
     IStorage& _storage;
     ::async::ContextType _context;
+    ::estd::forward_list<StorageJob> _jobs;
 };
 
 } // namespace storage

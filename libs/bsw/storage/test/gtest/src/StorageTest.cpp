@@ -19,7 +19,7 @@ namespace
 {
 using namespace ::testing;
 
-// NOTE: storing test results in an array requires that the IDs are defined in ascending order
+// NOTE: storing test results in an array requires the IDs to be continuous and in ascending order
 static uint32_t const BLOCKID1      = 100U;
 static uint32_t const BLOCKID2      = 101U;
 static uint32_t const BLOCKID3      = 102U;
@@ -71,11 +71,11 @@ public:
         (void)memset(jobResults, 0U, sizeof(jobResults));
         (void)memset(eepData, EEP_TESTVAL, sizeof(eepData));
         // store correct, precalculated checksums for reading that match the default data
-        eepData[0U]  = 0xD3U;
+        eepData[0U]  = 0xD3U; // BLOCKID1
         eepData[1U]  = 0xDCU;
-        eepData[10U] = 0xD3U;
+        eepData[10U] = 0xD3U; // BLOCKID3
         eepData[11U] = 0xDCU;
-        eepData[30U] = 0x36U;
+        eepData[30U] = 0x36U; // BLOCKID5
         eepData[31U] = 0x18U;
         // used sizes
         eepData[2U]  = 0U;
@@ -151,6 +151,7 @@ protected:
     uint8_t const EEP_TESTVAL = 111U;
     uint8_t const FEE_TESTVAL = 222U;
     uint8_t const WRITEVAL    = 90U;
+    uint8_t const WRITEVAL2   = 100U;
 };
 
 TEST_F(StorageTest, MultipleJobsAtOnce)
@@ -310,7 +311,7 @@ TEST_F(StorageTest, WriteFromTwoBuffers)
     uint8_t const data[] = {WRITEVAL, WRITEVAL};
     ::estd::slice<uint8_t const> dataSlice(data);
     StorageJob::Type::Write::BufferType buf(dataSlice);
-    uint8_t const data2[] = {WRITEVAL, WRITEVAL};
+    uint8_t const data2[] = {WRITEVAL2, WRITEVAL2};
     ::estd::slice<uint8_t const> dataSlice2(data2);
     StorageJob::Type::Write::BufferType buf2(dataSlice2);
     buf.setNext(&buf2);
@@ -327,8 +328,8 @@ TEST_F(StorageTest, WriteFromTwoBuffers)
     EXPECT_TRUE(hasSucceeded(BLOCKID4));
     EXPECT_EQ(eepData[20U], WRITEVAL);
     EXPECT_EQ(eepData[21U], WRITEVAL);
-    EXPECT_EQ(eepData[22U], WRITEVAL);
-    EXPECT_EQ(eepData[23U], WRITEVAL);
+    EXPECT_EQ(eepData[22U], WRITEVAL2);
+    EXPECT_EQ(eepData[23U], WRITEVAL2);
 }
 
 TEST_F(StorageTest, ReadFromOffset)
@@ -415,7 +416,7 @@ TEST_F(StorageTest, WriteToOffsetWithoutExistingData)
     EXPECT_EQ(eepData[11U], 0x3EU);
     EXPECT_EQ(eepData[12U], 0U); // verify size
     EXPECT_EQ(eepData[13U], 2U);
-    EXPECT_EQ(eepData[14U], 0U); // initialized to default
+    EXPECT_EQ(eepData[14U], 0U); // 1st data byte initialized to default
     EXPECT_EQ(eepData[15U], WRITEVAL);
 }
 

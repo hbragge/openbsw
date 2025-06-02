@@ -12,7 +12,7 @@ updated throughout the device lifetime by user applications or by other OpenBSW 
 can be stored to various storage devices such as flash or EEPROM.
 
 Plain flash memory can typically only be written after being erased first and both the write
-and the erase operation work on certain granularity (e.g. 512 byte pages for writing and 4096
+and the erase operations work at a certain granularity (e.g. 512 byte pages for writing and 4096
 byte sectors for erasing). In contrast to that, EEPROM supports writing without erasing and
 can write single bytes.
 
@@ -22,7 +22,7 @@ this safely is to allocate two flash sectors for each data block and alternating
 between the two on each write. Flash endurance has to be kept in mind though, in order to not
 run out of erase cycles too quickly.
 
-The Storage API should take care of most of such complexity by providing a unified interface
+The storage API should take care of most of this complexity by providing a unified interface
 for storing to different storage devices. Additionally, it ensures safe sharing of physical
 storage devices between users by preventing race conditions and data layout overlaps.
 
@@ -68,7 +68,7 @@ Storage classes:
   outgoing IDs used by the delegates
 - ``QueuingStorage``: when called, switches to the specified task context and then forwards the
   job to a delegate storage; also takes care of queuing when the delegate is busy
-- ``EepStorage``, ``FeeStorage``: device specific storages that take care of low level details
+- ``EepStorage``, ``FeeStorage``: device-specific storages that take care of low-level details
   of persistent storing, such as managing the data layout and detecting errors; might use a
   platform-specific driver for the actual device access
 
@@ -107,7 +107,7 @@ Preparing a job
 In order to read or write data, users need to:
 
 - allocate a ``StorageJob`` object
-- initialize it with the desired parameters: the job type (read or write), the block ID, RAM
+- initialize it with the desired parameters: the job type (read or write), the block ID, the RAM
   buffers to use, and the asynchronous callback that should be run in the end
 - optionally specify a read/write offset for partial access
 - pass the job to ``IStorage::process()`` and wait for the callback
@@ -124,9 +124,9 @@ Things to consider:
 - there's no upper limit on how long the processing can take; in case the application cannot wait
   longer than a certain period of time, it needs to go into an error state and **not** do a retry
 - in a multi-user system it should be assumed that the callback won't be run in the user
-  context, meaning that potential race conditions need to considered
+  context, meaning that potential race conditions need to be considered
 - if multiple jobs are ongoing at once, users shouldn't expect them to finish in any specific
-  order: even though FIFO order is the most likely one, it's not always the case because errors and
+  order: even though FIFO order is most likely, it's not guaranteed because errors and
   different task priorities can affect the order
 - when ``process()`` returns, it's possible that the callback was already run directly in
   the same task context (or in a higher priority task); so if a flag is needed to maintain the job
@@ -137,18 +137,18 @@ Things to consider:
 
   An additional limitation present in restricted, single-user systems is that users might not
   be able to trigger a lot of follow-up jobs directly inside the callback, even if sending just one
-  job after another. When users call a device specific storage such as ``EepStorage`` directly
+  job after another. When users call a device-specific storage such as ``EepStorage`` directly
   without a context switch, then the callback function is also run in the user context. In this
   case, when triggering another job inside the callback, it doesn't return immediately but recurses
-  deeper until reaching the "base case" where no more jobs are sent. If the recursion is too deep,
-  the stack memory will eventually run out and cause a crash. In multi-user systems this isn't a
+  deeper until reaching a "base case" where no more jobs are sent. If the recursion is too deep,
+  stack memory will eventually run out and cause a crash. In multi-user systems this isn't a
   concern because the library protects against such recursion with internal asynchronous calls.
 
 Providing the RAM buffers
 +++++++++++++++++++++++++
 
-RAM buffers to copy to/from must be provided as ``LinkedBuffer`` objects (each with
-an ``estd::slice`` inside). Buffers can be linked together using ``LinkedBuffer::setNext`` method
+RAM buffers to copy to/from must be provided as ``LinkedBuffer`` objects, each with
+an ``estd::slice`` inside. Buffers can be linked together using ``LinkedBuffer::setNext`` method
 to form a list of buffers, each associated with a separate RAM-area. This provides flexibility in
 choosing which RAM location should correspond to which part of the block, in effect dividing the
 block into parts. Storages may also use this mechanism internally to attach headers or footers
@@ -169,18 +169,17 @@ Receiving a response
 After one of the storages has processed the job (i.e. it has read or written the data and checked
 for errors), it will run the user-provided callback. It will do this directly in its own task
 context (different from the user context in the demo setup), so users need to be aware of race
-conditions in case there's any data shared between the user context and the driver context. Note
-that in case of error, the callback might be run directly in the user context. In the callback the
-job result, type, block ID and the read size (if reading) can be checked and handled accordingly.
-This could mean, for example, setting some internal state variables to control the application
-logic: in case of success, continue to the next step, otherwise go into an error state.
+conditions in case there's any data shared between the user context and the driver context. In the
+callback the job result, type, block ID and the read size (if reading) can be checked and handled
+accordingly. This could mean, for example, setting some internal state variables to control the
+application logic: in case of success, continue to the next step, otherwise go into an error state.
 
 In case of error (i.e. ``StorageJob::getResult()`` is of type ``StorageJob::Result::Error``),
 triggering a retry should not be necessary. An error is usually caused by mistakes in the
 configuration, integration code, application code or even inside the library. This means that
 retries will probably fail too and just cause unnecessary system load. Or it might eventually
 succeed but make it harder to detect and analyze the original problem. An error could also indicate
-a hardware failure, but in that case a retry might cause further data loss so it's better to go
+a hardware failure, but in that case a retry might cause further data loss so it's preferable to go
 into an error state instead. In the end though it's up to the user to decide what to do in case of
 error.
 
@@ -188,25 +187,25 @@ Thread safety
 +++++++++++++
 
 As already mentioned, users are responsible for handling any race conditions in the asynchronous
-callback. They can be run in different tasks: most commonly in the user or the "driver" task, but
-it depends on the storage setup and could be any task context. ``MappingStorage`` and
+callback. They can be run in different task contexts: most commonly in the user or the "driver"
+context, but it depends on the storage setup and could be any context. ``MappingStorage`` and
 ``QueuingStorage`` are thread-safe, meaning that users from different tasks can share them without
 having to worry about race conditions. ``StorageJob`` is partially thread-safe, excluding the
 methods ``init()``, ``initRead()`` and ``initWrite()`` that are supposed to be called by only one
-user in one task context when preparing the job. The device specific storages (``EepStorage``,
-``FeeStorage``) provide no thread safety at all when called directly.
+user in one task context when preparing the job. The device-specific storages ``EepStorage`` and
+``FeeStorage`` provide no thread safety at all when called directly.
 
 Advanced: mapper internals
 ++++++++++++++++++++++++++
 
 As mentioned before, when ``MappingStorage::process()`` gets called, the mapper first validates
-the job, then looks up an entry in the ``MappingConfig`` table which corresponds to the job and
+the job, then looks up an entry in the ``MappingConfig`` table that corresponds to the job and
 forwards it to the specified outgoing storage (a ``QueuingStorage`` object in the demo).
 Before forwarding it though, the incoming ID (``MappingConfig::blockId``) needs to be mapped to an
 outgoing block ID (``MappingConfig::outgoingBlockId``), which then gets assigned to a temporary
-(outgoing) job. A temporary job is used to avoid modifying the original one. Outgoing jobs are
-configured with "intermediate" callback implemented by the mapper. When an outgoing storage
-eventually calls the intermediate callback, mapper looks up the original job object from an
+(outgoing) job. A temporary job is needed to avoid modifying the original one. Outgoing jobs are
+configured with an "intermediate" callback implemented by the mapper. When an outgoing storage
+eventually calls the intermediate callback, mapper then looks up the original job object from an
 internal array and runs the user-provided callback.
 
 Only a limited (but configurable) number of temporary job "slots" are available internally, so
@@ -216,9 +215,9 @@ finishes (i.e. the intermediate callback gets called), another job from the wait
 are any) will be taken for processing in FIFO order.
 
 There is also another internal list, used for storing jobs that have failed the validation in the
-beginning of ``process()`` method. This list is needed because the user-provided callbacks should
+beginning of ``process()`` method. This list is needed because the user-provided callbacks need to
 be called asynchronously and the corresponding jobs need to be remembered while this indirection
-(an ``async::execute`` call) is happening. Running the callbacks directly instead could lead to
+(an ``async::execute`` call) takes place. Running the callbacks directly instead could lead to
 running out of stack memory in case the user triggers additional jobs inside the callback.
 
 .. note::
@@ -234,22 +233,19 @@ running out of stack memory in case the user triggers additional jobs inside the
 Advanced: rearranging the storages
 ++++++++++++++++++++++++++++++++++
 
-The purpose of the common ``IStorage``  interface is to make it easier to support new use cases by
+The purpose of the common ``IStorage`` interface is to make it easier to support new use cases by
 just rearranging the storages. For example in single-user systems, thread safety is not a
-concern, so there's no need to switch to another context before calling the device specific
+concern, so there's no need to switch to another context before calling a device-specific
 storage. This means that ``QueuingStorage`` can be left out and have the mapper call the storages
 directly instead, so that everything (including the asynchronous callback) will be run in the same
-context. Or in case the mapper has just one delegate, it's possible to leave the mapper out and
+context. Or in case the mapper has only one delegate, it's possible to leave the mapper out and
 have users call a queuing storage instead (in a multi-user system) or the underlying storage
 directly (in a single-user system).
 
-It's also possible to have both kinds of device specific storages at the same time: some that need
-a task switch (like EEPROM) and some that don't (e.g. a storage that writes to RAM and uses locks
-for thread safety). Only those that need it should be associated with a queuing storage but others
-can be called by the mapper directly. Or, if all storages can run in the same context (but not in
-the user context directly), it's possible to have just one queuing storage and make the mapper act
-as its delegate rather than vice versa (in the demo setup the queuing storages are delegates of the
-mapper). A diagram of this kind of setup is shown below:
+In case all storages can run in the same task context (but not in the user context directly), it's
+also possible to have just one queuing storage and make the mapper act as its delegate rather than
+vice versa (remember, in the demo setup the queuing storages are delegates of the mapper). A
+diagram of this kind of setup is shown below:
 
 .. uml::
   :scale: 100%
@@ -272,16 +268,16 @@ Advanced: custom storages
 
 Additional storages can also be implemented, for example:
 
-- additional storages for various physical device types (such as non-initialized RAM to retain data
-  between restarts, or storing into a file if file system is available)
+- storages for further physical device types (such as non-initialized RAM to retain data
+  between restarts, or storing into a file if a file system is available)
 - an alternative storage implementation that defers writes until later (until sleep or shutdown
   for example)
-- an alternative storage that uses less RAM for buffering but is slower (or vice versa)
+- an alternative storage that uses less RAM for buffering but is slower, or vice versa
 - a storage that encrypts the data before storing
 - a "safe storage" that holds the read data in an internal buffer, so that it can be copied by the
   user in a safety-compatible way
 - a "proxy storage" that forwards jobs to another core, CPU or over the network
-- an adapter that translates Storage API calls to a legacy API
+- an adapter that translates storage API calls to a legacy API
 - an alternative mapper that provides extra functionality like write-rate control, where too
   frequent writes to the same block get delayed artificially
 
@@ -289,17 +285,17 @@ In case a storage should reuse some functionality of another one, using composit
 should be favored over inheritance, in order to avoid coupling subclasses with one specific base
 class.
 
-It's worth noting that the purpose of the Storage API is to make it easy for users to write robust
+It's worth noting that the purpose of the storage API is to make it easy for users to write robust
 application code, meaning that exposing users to new pitfalls or limitations should be avoided if
 possible. For example, during ``process()``, storages should keep the job object intact, so that
 users can still recognize it in the callback and reuse it without extra effort. Also, any resources
-needed for maintaining internal state should be statically allocated up-front so that any sporadic
+needed for maintaining internal state should be statically allocated up-front, so that any sporadic
 "out-of-resources" errors can be avoided.
 
 If the storage access is inherently unreliable, for instance if a storage forwards requests over a
 network, then it must also implement an internal retry to avoid any sporadic errors. This might
 mean that in the worst case jobs can take quite long to finish (say, a few seconds or more). Such
-delays can happen with any of storage due to reasons beyond their control, like high CPU load
+delays can happen with any storage though due to reasons beyond their control, like high CPU load
 caused by other, higher priority tasks. In any case, it's important to keep applications robust
 against severe delays.
 
@@ -329,8 +325,8 @@ This chapter shows an example configuration with some data blocks and two underl
 and the second one doesn't use any driver at all for now. Real drivers will be added soon.
 
 Storage-related objects are bundled in a lifecycle system called ``StorageSystem``. Since most
-Storage API users are typically located in other systems, they can get access to the API via
-``StorageSystem::getStorage()``, which returns a reference to the mapper object.
+applications using the storage API are typically located in other systems, they can get access to
+the API via ``StorageSystem::getStorage()``, which returns a reference to the mapper object.
 
 The snippet below shows the block configuration defined inside ``StorageSystem`` (copied from
 ``executables/referenceApp/application/include/systems/StorageSystem.h``):
@@ -352,7 +348,7 @@ outgoing IDs refer to correct indices.
 
 ``FeeStorage`` is still not implemented and doesn't have its own config yet.
 
-Next the various storage objects need to be declared. This is shown below:
+Next, the various storage objects need to be declared. This is shown below:
 
 .. sourceinclude:: ../../../executables/referenceApp/application/include/systems/StorageSystem.h
   :start-after: BEGIN declaration
@@ -368,22 +364,22 @@ The next snippet shows the construction of these objects (copied from
   :start-after: BEGIN initialization
   :end-before: END initialization
 
-Here ``_eepStorage`` gets associated with ``EEP_BLOCK_CONFIG`` (a global constant) and the (fake)
-EEPROM driver. The queuing storages get associated with the corresponding storage and the
-task context they should run the storage in. Mapper gets associated with its own block config, an
-"error context" and the outgoing storages (please pay attention to the order, more details in the
-warning below). The error context means the task context where to run user-provided callbacks in
-case the job or the configuration is invalid. If possible, use the same context which is used for
+Here, ``_eepStorage`` gets associated with ``EEP_BLOCK_CONFIG`` (a global constant) and the (fake)
+EEPROM driver. The queuing storages get associated with the corresponding lower-level storages and
+the task context where those storages should run. Mapper gets associated with its own block config,
+an "error context" and the outgoing storages (please pay attention to the order, more details in
+the warning below). The error context means the context where to run user-provided callbacks in
+case the job or the configuration is invalid. If possible, use the same context that is used for
 callbacks of successful jobs also, i.e. the one that was passed to the queuing storages.
 
 After initializing the EEPROM driver and transitioning to the "run" state, the storage system is
-ready to start receiving jobs.
+ready to receive jobs from users.
 
 .. warning::
 
   The order of outgoing storages passed to the mapper is crucial and must match the "outgoing
-  storage IDs" used in the ``MAPPING_CONFIG``. In this case it means that ``_eepQueuingStorage``
-  (storage ID 0) must be passed first and then ``_feeQueuingStorage`` (storage ID 1).
+  storage IDs" used in ``MAPPING_CONFIG``. In this case it means that ``_eepQueuingStorage``
+  (storage ID 0) must be passed before ``_feeQueuingStorage`` (storage ID 1).
 
 Example jobs
 ------------
@@ -448,12 +444,13 @@ Buffers with different start addresses and sizes can be created as follows:
   :end-before: END storage buffers
 
 The read buffer (``_storageReadBuf``) is initialized with an ``estd::slice`` covering the complete
-``_storageData``. The write buffer however, is initialized with a slice associated with just one
+``_storageData``. The write buffer, however, is initialized with a slice associated with only one
 byte. Notice also how ``uint8_t const`` is used as the write buffer data type because unlike the
-read data, the write data won't be modified by the Storage module.
+read data, the write data won't be modified by the storage module.
 
-A sequence diagram of a successful read/write job processing (note: the ``_storage`` object in
-the above code corresponds to the ``MappingStorage`` object in the diagram):
+A sequence diagram of a successful read/write job processing is shown below. Note that the
+``_storage`` object in the earlier code corresponds to the ``MappingStorage`` object in the
+diagram.
 
 .. uml::
   :scale: 100%
@@ -471,7 +468,7 @@ the above code corresponds to the ``MappingStorage`` object in the diagram):
   QueuingStorage --> QueuingStorage : enqueue for async processing
   QueuingStorage --> MappingStorage -- : void
   MappingStorage --> User -- : void
-  QueuingStorage -> QueuingStorage : switch to driver task
+  QueuingStorage -> QueuingStorage : switch to driver context
   == In driver context ==
   QueuingStorage -> EepStorage ++ : process(outgoingJob)
   EepStorage -> Eeprom ++ : read/write

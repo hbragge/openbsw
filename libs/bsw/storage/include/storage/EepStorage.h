@@ -31,8 +31,8 @@ public:
 
 protected:
     explicit EepStorage(
-        EepBlockConfig const* eepBlockConfig,
-        size_t numBlocks,
+        EepBlockConfig const* config,
+        size_t configSize,
         ::eeprom::IEepromDriver& eeprom,
         uint8_t* eepBuf,
         size_t eepBufSize,
@@ -45,8 +45,8 @@ private:
     StorageJob::ResultType
     read(StorageJob& job, EepBlockConfig const& conf, size_t headerSize, size_t totalSize);
 
-    EepBlockConfig const* const _eepBlockConfig;
-    size_t const _numBlocks;
+    EepBlockConfig const* const _config;
+    size_t const _configSize;
     ::eeprom::IEepromDriver& _eeprom;
     uint8_t* const _eepBuf;
     size_t const _eepBufSize;
@@ -56,8 +56,8 @@ private:
 
 namespace declare
 {
-// CONFIG_SIZE: number of entries in the eepBlockConfig
-// MAX_BLOCK_SIZE: maximum block size (without the header) present in eepBlockConfig
+// CONFIG_SIZE: number of entries in the config
+// MAX_BLOCK_SIZE: maximum block size (without the header) present in the config
 template<size_t CONFIG_SIZE, size_t MAX_BLOCK_SIZE>
 class EepStorage : public ::storage::EepStorage
 {
@@ -71,9 +71,9 @@ public:
     static constexpr size_t BUFFER_SIZE  = HEADER_SIZE + MAX_BLOCK_SIZE;
 
     explicit EepStorage(
-        EepBlockConfig const (&eepBlockConfig)[CONFIG_SIZE], ::eeprom::IEepromDriver& eeprom)
+        EepBlockConfig const (&config)[CONFIG_SIZE], ::eeprom::IEepromDriver& eeprom)
     : ::storage::EepStorage(
-        reinterpret_cast<EepBlockConfig const*>(&eepBlockConfig),
+        reinterpret_cast<EepBlockConfig const*>(&config),
         CONFIG_SIZE,
         eeprom,
         _eepBuf,

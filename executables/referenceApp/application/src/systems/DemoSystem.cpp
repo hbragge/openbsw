@@ -64,7 +64,7 @@ DemoSystem::DemoSystem(
 , _storageReadBuf(::estd::slice<uint8_t>::from_pointer(
       reinterpret_cast<uint8_t*>(&_storageData), sizeof(_storageData)))
 , _storageWriteBuf(::estd::slice<uint8_t const>::from_pointer(
-      reinterpret_cast<uint8_t const*>(&(_storageData.charParam0)), 1))
+      reinterpret_cast<uint8_t const*>(&_storageData.charParam0), 1))
 // END storage buffers
 , _jobDoneCallback(
       ::storage::StorageJob::JobDoneCallback::create<DemoSystem, &DemoSystem::storageJobDone>(
@@ -184,7 +184,7 @@ void DemoSystem::storageJobDone(::storage::StorageJob& job)
         // update data and trigger a write job
         ++_storageData.charParam0;
         job.init(0xa01, _jobDoneCallback);
-        job.initWrite(_storageWriteBuf, 4);
+        job.initWrite(_storageWriteBuf, 4 /* start offset */);
         _storage.process(job);
     }
     else

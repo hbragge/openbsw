@@ -7,14 +7,14 @@ namespace storage
 {
 
 MappingStorage::MappingStorage(
-    MappingConfig const* const blockConfig,
-    size_t const numBlocks,
+    MappingConfig const* const config,
+    size_t const configSize,
     ::async::ContextType const context,
     ::estd::slice<StorageJob*> const inJobs,
     ::estd::slice<StorageJob*> const outJobs,
     ::estd::slice<IStorage* const> const storages)
-: _blockConfig(blockConfig)
-, _numBlocks(numBlocks)
+: _config(config)
+, _configSize(configSize)
 , _context(context)
 , _inJobs(inJobs)
 , _outJobs(outJobs)
@@ -31,15 +31,15 @@ void MappingStorage::process(StorageJob& job)
         return;
     }
 
-    auto const* conf = getBlockConfig(job.getId());
-    if (conf == nullptr)
+    auto const* confEntry = getConfigEntry(job.getId());
+    if (confEntry == nullptr)
     {
-        // no config entry found for this blockId
+        // no entry found for this blockId
         jobFailed(job);
         return;
     }
 
-    if (conf->outgoingIdx >= _storages.size())
+    if (confEntry->outgoingIdx >= _storages.size())
     {
         // outgoingIdx out of bounds
         jobFailed(job);
@@ -56,7 +56,7 @@ void MappingStorage::process(StorageJob& job)
                 // store incoming job so we can look it up again in the callback
                 _inJobs[slotIdx] = &job;
                 lock.unlock(); // variables inside triggerJob don't need to be protected
-                triggerJob(job, *conf, slotIdx);
+                triggerJob(job, *confEntry, slotIdx);
                 return;
             }
         }
@@ -64,17 +64,6 @@ void MappingStorage::process(StorageJob& job)
         // TODO: this takes O(n) time, use bidirectional list instead?
         _waitingJobs.push_back(job);
     }
-}
-
-void MappingStorage::jobFailed(StorageJob& job)
-{
-    // put failed jobs in a queue and handle them asynchronously instead of calling job.sendResult
-    // directly, otherwise there's a risk of stack overflow in case user calls process() again
-    // inside the callback
-    ::async::ModifiableLockType lock;
-    _failedJobs.push_back(job);
-    lock.unlock();
-    ::async::execute(_context, *this);
 }
 
 void MappingStorage::execute()
@@ -91,11 +80,23 @@ void MappingStorage::execute()
     ::async::execute(_context, *this);
 }
 
-void MappingStorage::triggerJob(StorageJob& jobIn, MappingConfig const& conf, size_t const slotIdx)
+void MappingStorage::jobFailed(StorageJob& job)
 {
-    // use one of the internal jobs as the outgoing job to be passed to the lower level storage
+    // put failed jobs in a queue and handle them asynchronously instead of calling job.sendResult
+    // directly, otherwise there's a risk of stack overflow in case user calls process() again
+    // inside the callback
+    ::async::ModifiableLockType lock;
+    _failedJobs.push_back(job);
+    lock.unlock();
+    ::async::execute(_context, *this);
+}
+
+void MappingStorage::triggerJob(
+    StorageJob& jobIn, MappingConfig const& confEntry, size_t const slotIdx)
+{
+    // use one of the temporary jobs as the outgoing job to be passed to the lower-level storage
     auto& jobOut = *(_outJobs[slotIdx]);
-    jobOut.init(conf.outgoingBlockId, _callback);
+    jobOut.init(confEntry.outgoingBlockId, _callback);
     if (jobIn.is<StorageJob::Type::Read>())
     {
         auto& readJob = jobIn.getRead();
@@ -107,31 +108,29 @@ void MappingStorage::triggerJob(StorageJob& jobIn, MappingConfig const& conf, si
         jobOut.initWrite(writeJob.getBuffer(), writeJob.getOffset());
     }
     // delegate the job to the correct outgoing storage
-    _storages[conf.outgoingIdx]->process(jobOut);
+    _storages[confEntry.outgoingIdx]->process(jobOut);
 }
 
 void MappingStorage::callback(StorageJob& job)
 {
-    auto const slotIdx = findUsedSlotIdx(job);
+    auto const slotIdx = getUsedSlotIdx(job);
     // slotIdx will be out of bounds if job object is unknown
     estd_assert(slotIdx < _inJobs.size());
-    auto* inJobPtr = _inJobs[slotIdx];
-    // if inJobPtr is already null, a storage has probably run the callback too many times; this
+    auto* jobInPtr = _inJobs[slotIdx];
+    // if jobInPtr is already null, a storage has probably run the callback too many times; this
     // problem is not detectable here though in case there were items in the waiting list during
     // the previous call and the outgoing job was re-used for the next job; in this case the
-    // problem is less obvious and a wrong callback might get called or something, but let's just
+    // problem is less obvious and a wrong callback might get called instead, but let's just
     // crash here if anything seems wrong
-    estd_assert(inJobPtr != nullptr);
-    auto& inJob = *inJobPtr;
+    estd_assert(jobInPtr != nullptr);
+    auto& jobIn = *jobInPtr;
     if (job.is<StorageJob::Type::Read>())
     {
-        auto& inReadJob             = inJob.getRead();
-        auto const finishedReadSize = job.getRead().getReadSize();
         // report how many bytes were read
-        inReadJob.setReadSize(finishedReadSize);
+        jobIn.getRead().setReadSize(job.getRead().getReadSize());
     }
     // trigger the user-provided callback
-    inJob.sendResult(job.getResult());
+    jobIn.sendResult(job.getResult());
 
     {
         ::async::ModifiableLockType lock;
@@ -147,28 +146,28 @@ void MappingStorage::callback(StorageJob& job)
             _waitingJobs.pop_front();
             _inJobs[slotIdx] = &nextJob;
             lock.unlock();
-            triggerJob(nextJob, *(getBlockConfig(nextJob.getId())), slotIdx);
+            triggerJob(nextJob, *(getConfigEntry(nextJob.getId())), slotIdx);
         }
     }
 }
 
-MappingConfig const* MappingStorage::getBlockConfig(uint32_t const blockId) const
+MappingConfig const* MappingStorage::getConfigEntry(uint32_t const blockId) const
 {
-    // TODO: do binary search instead?
-    for (size_t i = 0U; i < _numBlocks; ++i)
+    // TODO: use binary search instead?
+    for (size_t i = 0U; i < _configSize; ++i)
     {
-        if ((_blockConfig[i].blockId) == blockId)
+        if ((_config[i].blockId) == blockId)
         {
-            return &(_blockConfig[i]);
+            return &(_config[i]);
         }
     }
     return nullptr;
 }
 
-size_t MappingStorage::findUsedSlotIdx(StorageJob& job) const
+size_t MappingStorage::getUsedSlotIdx(StorageJob& job) const
 {
     // go through the slots and find the used job; we could also try to subtract _outJobs start
-    // address from the job address, but that makes it harder to detect unknown jobs
+    // address from the job address, but that would make it harder to detect unknown jobs
     auto const maxSlot = _outJobs.size();
     for (size_t slotIdx = 0U; slotIdx < maxSlot; ++slotIdx)
     {

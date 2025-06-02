@@ -36,7 +36,10 @@ public:
             job.sendResult(StorageJob::Result::Success());
             return;
         }
-        job.sendResult(StorageJob::Result::Error());
+        else
+        {
+            job.sendResult(StorageJob::Result::Error());
+        }
     }
 };
 

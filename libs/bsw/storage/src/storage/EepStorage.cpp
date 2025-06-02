@@ -34,15 +34,15 @@ namespace storage
 {
 
 EepStorage::EepStorage(
-    EepBlockConfig const* const eepBlockConfig,
-    size_t const numBlocks,
+    EepBlockConfig const* const config,
+    size_t const configSize,
     ::eeprom::IEepromDriver& eeprom,
     uint8_t* const eepBuf,
     size_t const eepBufSize,
     size_t const nvCrcSize,
     size_t const sizeTagSize)
-: _eepBlockConfig(eepBlockConfig)
-, _numBlocks(numBlocks)
+: _config(config)
+, _configSize(configSize)
 , _eeprom(eeprom)
 , _eepBuf(eepBuf)
 , _eepBufSize(eepBufSize)
@@ -52,19 +52,19 @@ EepStorage::EepStorage(
 
 void EepStorage::process(StorageJob& job)
 {
-    if (job.getId() >= _numBlocks)
+    if (job.getId() >= _configSize)
     {
         job.sendResult(StorageJob::Result::Error());
         return;
     }
 
-    auto const& conf  = _eepBlockConfig[job.getId()];
-    size_t headerSize = 0U;
-    if (conf.errorDetection)
+    auto const& confEntry = _config[job.getId()];
+    size_t headerSize     = 0U;
+    if (confEntry.errorDetection)
     {
         headerSize = _headerSize;
     }
-    auto const totalSize = headerSize + conf.blockSize;
+    auto const totalSize = headerSize + confEntry.blockSize;
     if (totalSize > _eepBufSize)
     {
         job.sendResult(StorageJob::Result::Error());
@@ -74,21 +74,24 @@ void EepStorage::process(StorageJob& job)
     StorageJob::ResultType result = StorageJob::Result::Error();
     if (job.is<StorageJob::Type::Write>())
     {
-        result = write(job, conf, headerSize, totalSize);
+        result = write(job, confEntry, headerSize, totalSize);
     }
     else if (job.is<StorageJob::Type::Read>())
     {
-        result = read(job, conf, headerSize, totalSize);
+        result = read(job, confEntry, headerSize, totalSize);
     }
     job.sendResult(result);
 }
 
 StorageJob::ResultType EepStorage::write(
-    StorageJob& job, EepBlockConfig const& conf, size_t const headerSize, size_t const totalSize)
+    StorageJob& job,
+    EepBlockConfig const& confEntry,
+    size_t const headerSize,
+    size_t const totalSize)
 {
     auto& writeJob    = job.getWrite();
     auto const offset = writeJob.getOffset();
-    if (offset >= conf.blockSize)
+    if (offset >= confEntry.blockSize)
     {
         return StorageJob::Result::Error();
     }
@@ -96,19 +99,19 @@ StorageJob::ResultType EepStorage::write(
     // NOTE: the two pointers below are relevant only if errorDetection is enabled
     uint8_t* const blockSizePtr = &(_eepBuf[_nvCrcSize]);
     uint8_t* const dataPtr      = &(_eepBuf[_headerSize]);
-    if (conf.errorDetection)
+    if (confEntry.errorDetection)
     {
         // in case of writing with checksum, read back the previously written data first in order
         // to find out how much data has been written before (if any): this must be taken into
         // account before writing the new size
-        if (_eeprom.read(conf.address, _eepBuf, totalSize) != ::bsp::BSP_OK)
+        if (_eeprom.read(confEntry.address, _eepBuf, totalSize) != ::bsp::BSP_OK)
         {
             return StorageJob::Result::Error();
         }
         usedBlockSize = ::estd::read_be<uint16_t>(blockSizePtr);
-        if (usedBlockSize > conf.blockSize)
+        if (usedBlockSize > confEntry.blockSize)
         {
-            usedBlockSize = conf.blockSize;
+            usedBlockSize = confEntry.blockSize;
         }
         if (!isCrcValid(dataPtr, usedBlockSize, _eepBuf))
         {
@@ -123,12 +126,12 @@ StorageJob::ResultType EepStorage::write(
     for (auto const& writeSlice : writeJob.getBuffer())
     {
         auto sizeToCopy = writeSlice.size();
-        if ((progressInBlock + sizeToCopy) > conf.blockSize)
+        if ((progressInBlock + sizeToCopy) > confEntry.blockSize)
         {
             // trying to store too much data
             return StorageJob::Result::Error();
         }
-        (void)memcpy(&(_eepBuf[(headerSize + progressInBlock)]), writeSlice.data(), sizeToCopy);
+        (void)memcpy(&(_eepBuf[headerSize + progressInBlock]), writeSlice.data(), sizeToCopy);
         progressForUser += sizeToCopy;
         progressInBlock += sizeToCopy;
     }
@@ -137,7 +140,7 @@ StorageJob::ResultType EepStorage::write(
         // writing zero bytes not allowed
         return StorageJob::Result::Error();
     }
-    if (conf.errorDetection)
+    if (confEntry.errorDetection)
     {
         // store how many bytes were written and the new checksum
         // NOTE: both need to take into account any data before the offset (either previously
@@ -151,7 +154,7 @@ StorageJob::ResultType EepStorage::write(
         ::estd::write_be<uint16_t>(blockSizePtr, usedBlockSize);
         calculateCrc(dataPtr, usedBlockSize, _eepBuf);
     }
-    if (_eeprom.write(conf.address, _eepBuf, (headerSize + progressInBlock)) != ::bsp::BSP_OK)
+    if (_eeprom.write(confEntry.address, _eepBuf, headerSize + progressInBlock) != ::bsp::BSP_OK)
     {
         return StorageJob::Result::Error();
     }
@@ -159,26 +162,29 @@ StorageJob::ResultType EepStorage::write(
 }
 
 StorageJob::ResultType EepStorage::read(
-    StorageJob& job, EepBlockConfig const& conf, size_t const headerSize, size_t const totalSize)
+    StorageJob& job,
+    EepBlockConfig const& confEntry,
+    size_t const headerSize,
+    size_t const totalSize)
 {
     // read the complete block in one go
-    if (_eeprom.read(conf.address, _eepBuf, totalSize) != ::bsp::BSP_OK)
+    if (_eeprom.read(confEntry.address, _eepBuf, totalSize) != ::bsp::BSP_OK)
     {
         return StorageJob::Result::Error();
     }
     // for blocks without error detection, consider max capacity as the "used block size"
-    auto usedBlockSize = conf.blockSize;
-    if (conf.errorDetection)
+    auto usedBlockSize = confEntry.blockSize;
+    if (confEntry.errorDetection)
     {
         // we need to find the previously stored size to verify the checksum and to know how much
         // can be copied to the read buffer
         usedBlockSize = ::estd::read_be<uint16_t>(&(_eepBuf[_nvCrcSize]));
-        if (usedBlockSize > conf.blockSize)
+        if (usedBlockSize > confEntry.blockSize)
         {
             // limit used block size to the max capacity
-            // NOTE: if more data was stored with another SW where the block size was bigger, it
+            // NOTE: if more data was stored using another SW where the block size was bigger, it
             // will fail the checksum check and get discarded
-            usedBlockSize = conf.blockSize;
+            usedBlockSize = confEntry.blockSize;
         }
         if (!isCrcValid(&(_eepBuf[headerSize]), usedBlockSize, _eepBuf))
         {
@@ -204,7 +210,7 @@ StorageJob::ResultType EepStorage::read(
             // checked in the beginning of the loop), otherwise sizeToCopy might overflow
             sizeToCopy = usedBlockSize - progressInBlock;
         }
-        (void)memcpy(readSlice.data(), &(_eepBuf[(headerSize + progressInBlock)]), sizeToCopy);
+        (void)memcpy(readSlice.data(), &(_eepBuf[headerSize + progressInBlock]), sizeToCopy);
         progressForUser += sizeToCopy;
         progressInBlock += sizeToCopy;
     }

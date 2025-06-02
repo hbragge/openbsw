@@ -176,21 +176,21 @@ void run()
 
     /* runlevel 8 */
     ::platform::platformLifecycleAdd(lifecycleManager, 8U);
+    // clang-format off
     lifecycleManager.addComponent(
         "demo",
         demoSystem.emplace(
             TASK_DEMO,
             lifecycleManager
 #ifdef PLATFORM_SUPPORT_CAN
-            ,
-            ::systems::getCanSystem()
+            , ::systems::getCanSystem()
 #endif
 #ifdef PLATFORM_SUPPORT_UDS
-                ,
-            (*storageSystem).getStorage()
+            , (*storageSystem).getStorage()
 #endif
-                ),
+        ),
         8U);
+    // clang-format on
 
     lifecycleManager.transitionToLevel(MaxNumLevels);
 

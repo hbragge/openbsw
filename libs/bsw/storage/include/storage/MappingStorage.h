@@ -9,8 +9,6 @@
 #include <estd/array.h>
 #include <estd/slice.h>
 
-#include <cstring>
-
 namespace storage
 {
 
@@ -34,26 +32,26 @@ public:
 
 protected:
     explicit MappingStorage(
-        MappingConfig const* blockConfig,
-        size_t numBlocks,
+        MappingConfig const* config,
+        size_t configSize,
         ::async::ContextType context,
         ::estd::slice<StorageJob*> inJobs,
         ::estd::slice<StorageJob*> outJobs,
         ::estd::slice<IStorage* const> storages);
 
 private:
-    void jobFailed(StorageJob& job);
     void execute() final;
+    void jobFailed(StorageJob& job);
     void triggerJob(StorageJob& jobIn, MappingConfig const& conf, size_t slotIdx);
     void callback(StorageJob& job);
-    MappingConfig const* getBlockConfig(uint32_t blockId) const;
-    size_t findUsedSlotIdx(StorageJob& job) const;
+    MappingConfig const* getConfigEntry(uint32_t blockId) const;
+    size_t getUsedSlotIdx(StorageJob& job) const;
 
-    MappingConfig const* const _blockConfig;
-    size_t const _numBlocks;
+    MappingConfig const* const _config;
+    size_t const _configSize;
     ::async::ContextType _context;
     ::estd::slice<StorageJob*> const _inJobs;
-    ::estd::slice<StorageJob*> _outJobs;
+    ::estd::slice<StorageJob*> const _outJobs;
     ::estd::slice<IStorage* const> const _storages;
     StorageJob::JobDoneCallback const _callback;
     ::estd::forward_list<StorageJob> _waitingJobs;
@@ -62,7 +60,7 @@ private:
 
 namespace declare
 {
-// CONFIG_SIZE: number of entries in the blockConfig
+// CONFIG_SIZE: number of entries in the mapping config
 // NUM_STORAGES: number of outgoing storages that will be passed in the constructor
 // NUM_JOB_SLOTS: number of slots for outgoing jobs
 template<size_t CONFIG_SIZE, size_t NUM_STORAGES, size_t NUM_JOB_SLOTS>
@@ -74,15 +72,13 @@ class MappingStorage : public ::storage::MappingStorage
 
 public:
     // NOTE: the order of "storages" arguments is crucial and must match the indices (outgoingIdx)
-    // given in the blockConfig (i.e. the first storage argument corresponds to the outgoingIdx 0,
+    // given in the config (i.e. the first storage argument corresponds to the outgoingIdx 0,
     // the second to outgoingIdx 1 and so on)
     template<typename... T>
     explicit MappingStorage(
-        MappingConfig const (&blockConfig)[CONFIG_SIZE],
-        ::async::ContextType context,
-        T&&... storages)
+        MappingConfig const (&config)[CONFIG_SIZE], ::async::ContextType context, T&&... storages)
     : ::storage::MappingStorage(
-        reinterpret_cast<MappingConfig const*>(&blockConfig),
+        reinterpret_cast<MappingConfig const*>(&config),
         CONFIG_SIZE,
         context,
         _inJobs,
@@ -93,7 +89,7 @@ public:
         static_assert(
             (sizeof...(storages)) == NUM_STORAGES,
             "number of storage arguments needs to be equal to NUM_STORAGES");
-        (void)memset(_inJobs.data(), 0U, (_inJobs.size() * sizeof(void*)));
+        _inJobs.fill(nullptr);
         for (size_t i = 0U; i < NUM_JOB_SLOTS; ++i)
         {
             _outJobPtrs[i] = &(_outJobs[i]);
