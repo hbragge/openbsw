@@ -4,6 +4,7 @@
 
 #include <async/Async.h>
 #include <bsp/eeprom/IEepromDriver.h>
+#include <console/AsyncCommandWrapper.h>
 #include <lifecycle/AsyncLifecycleComponent.h>
 #include <storage/EepStorage.h>
 #include <storage/FeeStorage.h>
@@ -11,6 +12,7 @@
 #include <storage/MappingStorage.h>
 #include <storage/QueuingStorage.h>
 #include <storage/StorageJob.h>
+#include <storage/StorageTester.h>
 
 namespace systems
 {
@@ -81,7 +83,7 @@ static constexpr ::storage::EepBlockConfig EEP_BLOCK_CONFIG[] = {
 class StorageSystem : public ::lifecycle::AsyncLifecycleComponent
 {
 public:
-    explicit StorageSystem(::async::ContextType context);
+    explicit StorageSystem(::async::ContextType driverContext, ::async::ContextType userContext);
     StorageSystem(StorageSystem const&)            = delete;
     StorageSystem& operator=(StorageSystem const&) = delete;
 
@@ -98,7 +100,9 @@ private:
     static constexpr size_t EEP_CONFIG_SIZE
         = sizeof(EEP_BLOCK_CONFIG) / sizeof(::storage::EepBlockConfig);
 
-    ::storage::declare::EepStorage<EEP_CONFIG_SIZE, 8 /* max data size */> _eepStorage;
+    static constexpr size_t MAX_BLOCK_SIZE = 8; // largest size defined in EEP_BLOCK_CONFIG
+
+    ::storage::declare::EepStorage<EEP_CONFIG_SIZE, MAX_BLOCK_SIZE> _eepStorage;
     ::storage::FeeStorage _feeStorage;
 
     ::storage::QueuingStorage _eepQueuingStorage;
@@ -112,6 +116,9 @@ private:
         2 /* number of delegate storages */,
         2 /* max simultaneous jobs */>
         _mappingStorage;
+
+    ::storage::declare::StorageTester<MAX_BLOCK_SIZE> _storageTester;
+    ::console::AsyncCommandWrapper _asyncStorageTester;
     // END declaration
 };
 

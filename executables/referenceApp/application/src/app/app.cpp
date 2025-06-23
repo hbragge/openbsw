@@ -163,7 +163,7 @@ void run()
 #endif
 
 #ifdef PLATFORM_SUPPORT_UDS
-    lifecycleManager.addComponent("storage", storageSystem.create(TASK_BSP), 5U);
+    lifecycleManager.addComponent("storage", storageSystem.create(TASK_BSP, TASK_DEMO), 5U);
 
     /* runlevel 6 */
     lifecycleManager.addComponent(
