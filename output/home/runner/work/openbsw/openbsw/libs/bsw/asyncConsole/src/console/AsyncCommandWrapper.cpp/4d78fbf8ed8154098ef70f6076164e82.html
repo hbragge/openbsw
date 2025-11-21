@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../../../../../../../../../../static/css/style.css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <title>Symbol - puncover</title>
+    
+</head>
+<body>
+    <div class="container" id="content">
+        <div class="page-header">
+            <nav class="navbar navbar-default" role="navigation">
+              <div class="container-fluid">
+                <div class="navbar-header">
+                  <a class="navbar-brand" href="../../../../../../../../../../../index.html">
+                    Puncover
+                  </a>
+                </div>
+              </div>
+            </nav>
+          
+        </div>
+        <div id="inner_content">
+        
+    
+    <ol class="breadcrumb folders">
+        
+        <li><a href="../../../../../../../../../../../home.html">home</a></li>
+        
+        <li><a href="../../../../../../../../../../runner.html">runner</a></li>
+        
+        <li><a href="../../../../../../../../../work.html">work</a></li>
+        
+        <li><a href="../../../../../../../../openbsw.html">openbsw</a></li>
+        
+        <li><a href="../../../../../../../openbsw.html">openbsw</a></li>
+        
+        <li><a href="../../../../../../libs.html">libs</a></li>
+        
+        <li><a href="../../../../../bsw.html">bsw</a></li>
+        
+        <li><a href="../../../../asyncConsole.html">asyncConsole</a></li>
+        
+        <li><a href="../../../src.html">src</a></li>
+        
+        <li ><a href="../../console.html">console</a>
+            </li>
+
+        
+        <li class="active"><a href="../AsyncCommandWrapper.cpp.html">AsyncCommandWrapper.cpp</a>:20
+            </li>
+        
+    </ol>
+
+
+    <table class="table table-condensed">
+        <tbody>
+            <tr>
+                <th>Function</th>
+                <td colspan="5">
+                    <span class="icon-function">console::AsyncCommandWrapper::getHelp(util::command::ICommand::IHelpCallback&amp;) const</span>
+                </td>
+            </tr>
+
+            <tr>
+                <th rowspan="2"></th>
+                <th>Address</th>
+                <th>Remarks</th>
+                <th>Stack</th>
+                <th>Code</th>
+                <th>Static</th>
+            </tr>
+            <tr>
+                <td>0x0000ed4c</td>
+                <td>
+    
+    
+</td>
+                <td>0 (static)</td>
+                <td>100</td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <th>No Callers</th>
+                <td colspan="5">
+                
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    No Callees
+                    
+                </th>
+                <td colspan="5">
+                
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    
+    <pre><a href="./ed96d1d01ceaa2fedec0cd154759c3f8.html">console::AsyncCommandWrapper::getId() const (100)</a></pre>
+    
+
+    <pre>
+
+    console::AsyncCommandWrapper::getHelp(util::command::ICommand::IHelpCallback&) const():
+
+        ed4c:	6900      	ldr	r0, [r0, #16]
+
+        ed4e:	4a17      	ldr	r2, [pc, #92]	; (edac <<a href="./4d78fbf8ed8154098ef70f6076164e82.html">console::AsyncCommandWrapper::getHelp(util::command::ICommand::IHelpCallback&) const</a>+0x60>)
+
+        ed50:	6803      	ldr	r3, [r0, #0]
+
+        ed52:	689b      	ldr	r3, [r3, #8]
+
+        ed54:	4293      	cmp	r3, r2
+
+        ed56:	d127      	bne.n	eda8 <<a href="./4d78fbf8ed8154098ef70f6076164e82.html">console::AsyncCommandWrapper::getHelp(util::command::ICommand::IHelpCallback&) const</a>+0x5c>
+
+        ed58:	6900      	ldr	r0, [r0, #16]
+
+        ed5a:	6802      	ldr	r2, [r0, #0]
+
+        ed5c:	6892      	ldr	r2, [r2, #8]
+
+        ed5e:	429a      	cmp	r2, r3
+
+        ed60:	d121      	bne.n	eda6 <<a href="./4d78fbf8ed8154098ef70f6076164e82.html">console::AsyncCommandWrapper::getHelp(util::command::ICommand::IHelpCallback&) const</a>+0x5a>
+
+        ed62:	6900      	ldr	r0, [r0, #16]
+
+        ed64:	6803      	ldr	r3, [r0, #0]
+
+        ed66:	689b      	ldr	r3, [r3, #8]
+
+        ed68:	4293      	cmp	r3, r2
+
+        ed6a:	d11d      	bne.n	eda8 <<a href="./4d78fbf8ed8154098ef70f6076164e82.html">console::AsyncCommandWrapper::getHelp(util::command::ICommand::IHelpCallback&) const</a>+0x5c>
+
+        ed6c:	6900      	ldr	r0, [r0, #16]
+
+        ed6e:	6802      	ldr	r2, [r0, #0]
+
+        ed70:	6892      	ldr	r2, [r2, #8]
+
+        ed72:	429a      	cmp	r2, r3
+
+        ed74:	d117      	bne.n	eda6 <<a href="./4d78fbf8ed8154098ef70f6076164e82.html">console::AsyncCommandWrapper::getHelp(util::command::ICommand::IHelpCallback&) const</a>+0x5a>
+
+        ed76:	6900      	ldr	r0, [r0, #16]
+
+        ed78:	6803      	ldr	r3, [r0, #0]
+
+        ed7a:	689b      	ldr	r3, [r3, #8]
+
+        ed7c:	4293      	cmp	r3, r2
+
+        ed7e:	d113      	bne.n	eda8 <<a href="./4d78fbf8ed8154098ef70f6076164e82.html">console::AsyncCommandWrapper::getHelp(util::command::ICommand::IHelpCallback&) const</a>+0x5c>
+
+        ed80:	6900      	ldr	r0, [r0, #16]
+
+        ed82:	6802      	ldr	r2, [r0, #0]
+
+        ed84:	6892      	ldr	r2, [r2, #8]
+
+        ed86:	429a      	cmp	r2, r3
+
+        ed88:	d10d      	bne.n	eda6 <<a href="./4d78fbf8ed8154098ef70f6076164e82.html">console::AsyncCommandWrapper::getHelp(util::command::ICommand::IHelpCallback&) const</a>+0x5a>
+
+        ed8a:	6900      	ldr	r0, [r0, #16]
+
+        ed8c:	6803      	ldr	r3, [r0, #0]
+
+        ed8e:	689b      	ldr	r3, [r3, #8]
+
+        ed90:	4293      	cmp	r3, r2
+
+        ed92:	d109      	bne.n	eda8 <<a href="./4d78fbf8ed8154098ef70f6076164e82.html">console::AsyncCommandWrapper::getHelp(util::command::ICommand::IHelpCallback&) const</a>+0x5c>
+
+        ed94:	6900      	ldr	r0, [r0, #16]
+
+        ed96:	6802      	ldr	r2, [r0, #0]
+
+        ed98:	6892      	ldr	r2, [r2, #8]
+
+        ed9a:	429a      	cmp	r2, r3
+
+        ed9c:	d103      	bne.n	eda6 <<a href="./4d78fbf8ed8154098ef70f6076164e82.html">console::AsyncCommandWrapper::getHelp(util::command::ICommand::IHelpCallback&) const</a>+0x5a>
+
+        ed9e:	6900      	ldr	r0, [r0, #16]
+
+        eda0:	6803      	ldr	r3, [r0, #0]
+
+        eda2:	689b      	ldr	r3, [r3, #8]
+
+        eda4:	4718      	bx	r3
+
+        eda6:	4710      	bx	r2
+
+        eda8:	4718      	bx	r3
+
+        edaa:	bf00      	nop
+
+        edac:	0000ed4d 	.word	0x0000ed4d
+
+    </pre>
+
+    
+    <pre><a href="./0d79e28394e5e6b1c4f868fcd5aee107.html">console::AsyncCommandWrapper::AsyncCommandWrapper(util::command::ICommand&amp;, unsigned char) (48)</a></pre>
+    
+
+    
+
+
+        </div>
+    <div id="page-footer">
+        <hr>
+        
+            brought to you with 💖
+            by <a href="https://twitter.com/hbehrens">Heiko Behrens</a>
+            <span class="secondary">– MIT license, copyright © 2014-2025</span>
+        
+    </div>
+    </div>
+</body>
+</html>

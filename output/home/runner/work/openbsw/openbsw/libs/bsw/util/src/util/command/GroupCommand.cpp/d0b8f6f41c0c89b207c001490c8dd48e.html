@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../../../../../../../../../../../static/css/style.css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <title>Symbol - puncover</title>
+    
+</head>
+<body>
+    <div class="container" id="content">
+        <div class="page-header">
+            <nav class="navbar navbar-default" role="navigation">
+              <div class="container-fluid">
+                <div class="navbar-header">
+                  <a class="navbar-brand" href="../../../../../../../../../../../../index.html">
+                    Puncover
+                  </a>
+                </div>
+              </div>
+            </nav>
+          
+        </div>
+        <div id="inner_content">
+        
+    
+    <ol class="breadcrumb folders">
+        
+        <li><a href="../../../../../../../../../../../../home.html">home</a></li>
+        
+        <li><a href="../../../../../../../../../../../runner.html">runner</a></li>
+        
+        <li><a href="../../../../../../../../../../work.html">work</a></li>
+        
+        <li><a href="../../../../../../../../../openbsw.html">openbsw</a></li>
+        
+        <li><a href="../../../../../../../../openbsw.html">openbsw</a></li>
+        
+        <li><a href="../../../../../../../libs.html">libs</a></li>
+        
+        <li><a href="../../../../../../bsw.html">bsw</a></li>
+        
+        <li><a href="../../../../../util.html">util</a></li>
+        
+        <li><a href="../../../../src.html">src</a></li>
+        
+        <li><a href="../../../util.html">util</a></li>
+        
+        <li ><a href="../../command.html">command</a>
+            </li>
+
+        
+        <li class="active"><a href="../GroupCommand.cpp.html">GroupCommand.cpp</a>:38
+            </li>
+        
+    </ol>
+
+
+    <table class="table table-condensed">
+        <tbody>
+            <tr>
+                <th>Function</th>
+                <td colspan="5">
+                    <span class="icon-function">util::command::GroupCommand::getHelp(util::command::ICommand::IHelpCallback&amp;) const</span>
+                </td>
+            </tr>
+
+            <tr>
+                <th rowspan="2"></th>
+                <th>Address</th>
+                <th>Remarks</th>
+                <th>Stack</th>
+                <th>Code</th>
+                <th>Static</th>
+            </tr>
+            <tr>
+                <td>0x00015cc4</td>
+                <td>
+    
+    
+</td>
+                <td>24 (static)</td>
+                <td>108</td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <th>No Callers</th>
+                <td colspan="5">
+                
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    No Callees
+                    
+                </th>
+                <td colspan="5">
+                
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    
+    <pre><a href="./e1712c36aa55dba15d1984a4fb2771d7.html">util::command::GroupCommand::getId() const (12)</a></pre>
+    
+
+    <pre>
+
+    util::command::GroupCommand::getHelp(util::command::ICommand::IHelpCallback&) const():
+
+       15cc4:	b570      	push	{r4, r5, r6, lr}
+
+       15cc6:	6803      	ldr	r3, [r0, #0]
+
+       15cc8:	460d      	mov	r5, r1
+
+       15cca:	6809      	ldr	r1, [r1, #0]
+
+       15ccc:	681a      	ldr	r2, [r3, #0]
+
+       15cce:	680e      	ldr	r6, [r1, #0]
+
+       15cd0:	4916      	ldr	r1, [pc, #88]	; (15d2c <<a href="./d0b8f6f41c0c89b207c001490c8dd48e.html">util::command::GroupCommand::getHelp(util::command::ICommand::IHelpCallback&) const</a>+0x68>)
+
+       15cd2:	428a      	cmp	r2, r1
+
+       15cd4:	b082      	sub	sp, #8
+
+       15cd6:	4604      	mov	r4, r0
+
+       15cd8:	d125      	bne.n	15d26 <<a href="./d0b8f6f41c0c89b207c001490c8dd48e.html">util::command::GroupCommand::getHelp(util::command::ICommand::IHelpCallback&) const</a>+0x62>
+
+    util::command::GroupCommand::getId() const():
+
+       15cda:	68db      	ldr	r3, [r3, #12]
+
+       15cdc:	4798      	blx	r3
+
+       15cde:	6801      	ldr	r1, [r0, #0]
+
+    _ZNK4util7command12GroupCommand14getDescriptionEv():
+
+       15ce0:	6823      	ldr	r3, [r4, #0]
+
+       15ce2:	9101      	str	r1, [sp, #4]
+
+       15ce4:	68db      	ldr	r3, [r3, #12]
+
+       15ce6:	4620      	mov	r0, r4
+
+       15ce8:	4798      	blx	r3
+
+    util::command::GroupCommand::getHelp(util::command::ICommand::IHelpCallback&) const():
+
+       15cea:	9901      	ldr	r1, [sp, #4]
+
+       15cec:	6842      	ldr	r2, [r0, #4]
+
+       15cee:	2300      	movs	r3, #0
+
+       15cf0:	4628      	mov	r0, r5
+
+       15cf2:	47b0      	blx	r6
+
+       15cf4:	6823      	ldr	r3, [r4, #0]
+
+       15cf6:	4620      	mov	r0, r4
+
+       15cf8:	68db      	ldr	r3, [r3, #12]
+
+       15cfa:	4798      	blx	r3
+
+       15cfc:	68c1      	ldr	r1, [r0, #12]
+
+       15cfe:	f100 040c 	add.w	r4, r0, #12
+
+       15d02:	b149      	cbz	r1, 15d18 <<a href="./d0b8f6f41c0c89b207c001490c8dd48e.html">util::command::GroupCommand::getHelp(util::command::ICommand::IHelpCallback&) const</a>+0x54>
+
+       15d04:	682b      	ldr	r3, [r5, #0]
+
+       15d06:	6862      	ldr	r2, [r4, #4]
+
+       15d08:	681e      	ldr	r6, [r3, #0]
+
+       15d0a:	4628      	mov	r0, r5
+
+       15d0c:	2301      	movs	r3, #1
+
+       15d0e:	47b0      	blx	r6
+
+       15d10:	f854 1f0c 	ldr.w	r1, [r4, #12]!
+
+       15d14:	2900      	cmp	r1, #0
+
+       15d16:	d1f5      	bne.n	15d04 <<a href="./d0b8f6f41c0c89b207c001490c8dd48e.html">util::command::GroupCommand::getHelp(util::command::ICommand::IHelpCallback&) const</a>+0x40>
+
+       15d18:	682b      	ldr	r3, [r5, #0]
+
+       15d1a:	685b      	ldr	r3, [r3, #4]
+
+       15d1c:	4628      	mov	r0, r5
+
+       15d1e:	b002      	add	sp, #8
+
+       15d20:	e8bd 4070 	ldmia.w	sp!, {r4, r5, r6, lr}
+
+       15d24:	4718      	bx	r3
+
+       15d26:	4790      	blx	r2
+
+       15d28:	4601      	mov	r1, r0
+
+       15d2a:	e7d9      	b.n	15ce0 <<a href="./d0b8f6f41c0c89b207c001490c8dd48e.html">util::command::GroupCommand::getHelp(util::command::ICommand::IHelpCallback&) const</a>+0x1c>
+
+       15d2c:	00015cb9 	.word	0x00015cb9
+
+    </pre>
+
+    
+    <pre><a href="./9d3585b94531f6bc4179e78c99b8d74b.html">util::command::GroupCommand::lookupCommand(util::string::ConstString const&amp;) const (68)</a></pre>
+    
+
+    
+
+
+        </div>
+    <div id="page-footer">
+        <hr>
+        
+            brought to you with 💖
+            by <a href="https://twitter.com/hbehrens">Heiko Behrens</a>
+            <span class="secondary">– MIT license, copyright © 2014-2025</span>
+        
+    </div>
+    </div>
+</body>
+</html>

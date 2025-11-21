@@ -1,0 +1,703 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../../../../../../../../../../static/css/style.css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <title>Symbol - puncover</title>
+    
+</head>
+<body>
+    <div class="container" id="content">
+        <div class="page-header">
+            <nav class="navbar navbar-default" role="navigation">
+              <div class="container-fluid">
+                <div class="navbar-header">
+                  <a class="navbar-brand" href="../../../../../../../../../../../index.html">
+                    Puncover
+                  </a>
+                </div>
+              </div>
+            </nav>
+          
+        </div>
+        <div id="inner_content">
+        
+    
+    <ol class="breadcrumb folders">
+        
+        <li><a href="../../../../../../../../../../../home.html">home</a></li>
+        
+        <li><a href="../../../../../../../../../../runner.html">runner</a></li>
+        
+        <li><a href="../../../../../../../../../work.html">work</a></li>
+        
+        <li><a href="../../../../../../../../openbsw.html">openbsw</a></li>
+        
+        <li><a href="../../../../../../../openbsw.html">openbsw</a></li>
+        
+        <li><a href="../../../../../../libs.html">libs</a></li>
+        
+        <li><a href="../../../../../bsw.html">bsw</a></li>
+        
+        <li><a href="../../../../lifecycle.html">lifecycle</a></li>
+        
+        <li><a href="../../../src.html">src</a></li>
+        
+        <li ><a href="../../lifecycle.html">lifecycle</a>
+            </li>
+
+        
+        <li class="active"><a href="../LifecycleManager.cpp.html">LifecycleManager.cpp</a>:101
+            </li>
+        
+    </ol>
+
+
+    <table class="table table-condensed">
+        <tbody>
+            <tr>
+                <th>Function</th>
+                <td colspan="5">
+                    <span class="icon-function">lifecycle::LifecycleManager::execute()</span>
+                </td>
+            </tr>
+
+            <tr>
+                <th rowspan="2"></th>
+                <th>Address</th>
+                <th>Remarks</th>
+                <th>Stack</th>
+                <th>Code</th>
+                <th>Static</th>
+            </tr>
+            <tr>
+                <td>0x0000f570</td>
+                <td>
+    <span class="label label-success">x-module</span>
+    
+</td>
+                <td>48 (static)</td>
+                <td>460</td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <th>Callers (1)</th>
+                <td colspan="5">
+                
+                    <a href="../../../include/lifecycle/LifecycleManager.h/cbad09b3a62f537105ec4f915fb928ec.html">non-virtual thunk to lifecycle::LifecycleManager::execute() (8)</a>
+                    
+                
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Callees (3,
+                            <span title="sum of used bytes by all callees">
+                            Σ=380
+                            </span>
+                        )
+                    
+                </th>
+                <td colspan="5">
+                
+                    <a href="./76a60044542a8fc150ed89fb6fd4be62.html">lifecycle::LifecycleManager::checkLevelTransitionDone() (220)</a>
+                    
+                        ,
+                    
+                
+                    <a href="../../../../util/include/util/logger/Logger.h/0ab01804358606b880086539418bdb3a.html">util::logger::Logger::info(unsigned char, char const*, ...) (56)</a>
+                    
+                        ,
+                    
+                
+                    <a href="../../../../asyncFreeRtos/src/async/Async.cpp/4dfe65e158466f2f9a73b985dc4b0ecc.html">async::execute(unsigned char, async::IRunnable&amp;) (104)</a>
+                    
+                
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    
+    <pre><a href="./76a60044542a8fc150ed89fb6fd4be62.html">lifecycle::LifecycleManager::checkLevelTransitionDone() (220)</a></pre>
+    
+
+    <pre>
+
+    lifecycle::LifecycleManager::execute():
+
+        f570:	e92d 4ff0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, lr}
+
+    lifecycle::LifecycleManager::checkLevelTransitionDone():
+
+        f574:	f890 3039 	ldrb.w	r3, [r0, #57]	; 0x39
+
+    lifecycle::LifecycleManager::execute():
+
+        f578:	b083      	sub	sp, #12
+
+        f57a:	4604      	mov	r4, r0
+
+    lifecycle::LifecycleManager::checkLevelTransitionDone():
+
+        f57c:	b19b      	cbz	r3, f5a6 <<a href="./34706f0c5e02289a63b56c4736078214.html">lifecycle::LifecycleManager::execute()</a>+0x36>
+
+        f57e:	6982      	ldr	r2, [r0, #24]
+
+    _ZN3etl7ivectorIN9lifecycle16LifecycleManager27ComponentTransitionExecutorEE5beginEv():
+
+        f580:	6853      	ldr	r3, [r2, #4]
+
+    _ZN3etl7ivectorIN9lifecycle16LifecycleManager27ComponentTransitionExecutorEE3endEv():
+
+        f582:	6891      	ldr	r1, [r2, #8]
+
+    lifecycle::LifecycleManager::checkLevelTransitionDone():
+
+        f584:	428b      	cmp	r3, r1
+
+        f586:	d102      	bne.n	f58e <<a href="./34706f0c5e02289a63b56c4736078214.html">lifecycle::LifecycleManager::execute()</a>+0x1e>
+
+        f588:	e008      	b.n	f59c <<a href="./34706f0c5e02289a63b56c4736078214.html">lifecycle::LifecycleManager::execute()</a>+0x2c>
+
+        f58a:	4299      	cmp	r1, r3
+
+        f58c:	d006      	beq.n	f59c <<a href="./34706f0c5e02289a63b56c4736078214.html">lifecycle::LifecycleManager::execute()</a>+0x2c>
+
+        f58e:	7b9a      	ldrb	r2, [r3, #14]
+
+        f590:	3310      	adds	r3, #16
+
+        f592:	2a00      	cmp	r2, #0
+
+        f594:	d0f9      	beq.n	f58a <<a href="./34706f0c5e02289a63b56c4736078214.html">lifecycle::LifecycleManager::execute()</a>+0x1a>
+
+    lifecycle::LifecycleManager::execute():
+
+        f596:	b003      	add	sp, #12
+
+        f598:	e8bd 8ff0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, pc}
+
+    lifecycle::LifecycleManager::checkLevelTransitionDone():
+
+        f59c:	4620      	mov	r0, r4
+
+        f59e:	f7ff ff79 	bl	f494 <<a href="./76a60044542a8fc150ed89fb6fd4be62.html">lifecycle::LifecycleManager::checkLevelTransitionDone()</a>.part.0>
+
+    lifecycle::LifecycleManager::execute():
+
+        f5a2:	2800      	cmp	r0, #0
+
+        f5a4:	d0f7      	beq.n	f596 <<a href="./34706f0c5e02289a63b56c4736078214.html">lifecycle::LifecycleManager::execute()</a>+0x26>
+
+        f5a6:	f894 303f 	ldrb.w	r3, [r4, #63]	; 0x3f
+
+        f5aa:	f894 2040 	ldrb.w	r2, [r4, #64]	; 0x40
+
+        f5ae:	4293      	cmp	r3, r2
+
+        f5b0:	d071      	beq.n	f696 <<a href="./34706f0c5e02289a63b56c4736078214.html">lifecycle::LifecycleManager::execute()</a>+0x126>
+
+        f5b2:	f240 80a2 	bls.w	f6fa <<a href="./34706f0c5e02289a63b56c4736078214.html">lifecycle::LifecycleManager::execute()</a>+0x18a>
+
+        f5b6:	1e59      	subs	r1, r3, #1
+
+        f5b8:	2202      	movs	r2, #2
+
+        f5ba:	f884 303b 	strb.w	r3, [r4, #59]	; 0x3b
+
+        f5be:	f884 103f 	strb.w	r1, [r4, #63]	; 0x3f
+
+        f5c2:	f884 203a 	strb.w	r2, [r4, #58]	; 0x3a
+
+    _ZNK3etl8delegateIFmvEE8is_validEv():
+
+        f5c6:	6b23      	ldr	r3, [r4, #48]	; 0x30
+
+    lifecycle::LifecycleManager::execute():
+
+        f5c8:	2201      	movs	r2, #1
+
+        f5ca:	f884 2039 	strb.w	r2, [r4, #57]	; 0x39
+
+    _ZNK3etl8delegateIFmvEEclIJEEEmDpOT_():
+
+        f5ce:	2b00      	cmp	r3, #0
+
+        f5d0:	d077      	beq.n	f6c2 <<a href="./34706f0c5e02289a63b56c4736078214.html">lifecycle::LifecycleManager::execute()</a>+0x152>
+
+        f5d2:	6ae0      	ldr	r0, [r4, #44]	; 0x2c
+
+        f5d4:	4798      	blx	r3
+
+    lifecycle::LifecycleManager::execute():
+
+        f5d6:	f894 303a 	ldrb.w	r3, [r4, #58]	; 0x3a
+
+        f5da:	4a4f      	ldr	r2, [pc, #316]	; (f718 <<a href="./34706f0c5e02289a63b56c4736078214.html">lifecycle::LifecycleManager::execute()</a>+0x1a8>)
+
+        f5dc:	6360      	str	r0, [r4, #52]	; 0x34
+
+    _ZN9lifecycle16LifecycleManager19getTransitionStringENS_19ILifecycleComponent10Transition4TypeE():
+
+        f5de:	2b01      	cmp	r3, #1
+
+    lifecycle::LifecycleManager::execute():
+
+        f5e0:	7810      	ldrb	r0, [r2, #0]
+
+    _ZN9lifecycle16LifecycleManager19getTransitionStringENS_19ILifecycleComponent10Transition4TypeE():
+
+        f5e2:	f000 8088 	beq.w	f6f6 <<a href="./34706f0c5e02289a63b56c4736078214.html">lifecycle::LifecycleManager::execute()</a>+0x186>
+
+        f5e6:	4a4d      	ldr	r2, [pc, #308]	; (f71c <<a href="./34706f0c5e02289a63b56c4736078214.html">lifecycle::LifecycleManager::execute()</a>+0x1ac>)
+
+        f5e8:	494d      	ldr	r1, [pc, #308]	; (f720 <<a href="./34706f0c5e02289a63b56c4736078214.html">lifecycle::LifecycleManager::execute()</a>+0x1b0>)
+
+        f5ea:	2b02      	cmp	r3, #2
+
+        f5ec:	bf08      	it	eq
+
+        f5ee:	460a      	moveq	r2, r1
+
+    lifecycle::LifecycleManager::execute():
+
+        f5f0:	f894 303b 	ldrb.w	r3, [r4, #59]	; 0x3b
+
+        f5f4:	494b      	ldr	r1, [pc, #300]	; (f724 <<a href="./34706f0c5e02289a63b56c4736078214.html">lifecycle::LifecycleManager::execute()</a>+0x1b4>)
+
+        f5f6:	f7f1 fd01 	bl	ffc <<a href="../../../../util/include/util/logger/Logger.h/0ab01804358606b880086539418bdb3a.html">util::logger::Logger::info(unsigned char, char const*, ...)</a>>
+
+        f5fa:	f894 303b 	ldrb.w	r3, [r4, #59]	; 0x3b
+
+    _ZNK3etl4spanIhLj4294967295EEixEj():
+
+        f5fe:	69e2      	ldr	r2, [r4, #28]
+
+    lifecycle::LifecycleManager::execute():
+
+        f600:	18d1      	adds	r1, r2, r3
+
+        f602:	5cd3      	ldrb	r3, [r2, r3]
+
+        f604:	f811 6c01 	ldrb.w	r6, [r1, #-1]
+
+        f608:	42b3      	cmp	r3, r6
+
+        f60a:	d965      	bls.n	f6d8 <<a href="./34706f0c5e02289a63b56c4736078214.html">lifecycle::LifecycleManager::execute()</a>+0x168>
+
+    _ZN9lifecycle16LifecycleManager19getTransitionStringENS_19ILifecycleComponent10Transition4TypeE():
+
+        f60c:	f8df 910c 	ldr.w	r9, [pc, #268]	; f71c <<a href="./34706f0c5e02289a63b56c4736078214.html">lifecycle::LifecycleManager::execute()</a>+0x1ac>
+
+        f610:	f8df 810c 	ldr.w	r8, [pc, #268]	; f720 <<a href="./34706f0c5e02289a63b56c4736078214.html">lifecycle::LifecycleManager::execute()</a>+0x1b0>
+
+        f614:	e014      	b.n	f640 <<a href="./34706f0c5e02289a63b56c4736078214.html">lifecycle::LifecycleManager::execute()</a>+0xd0>
+
+        f616:	2b02      	cmp	r3, #2
+
+        f618:	bf14      	ite	ne
+
+        f61a:	464a      	movne	r2, r9
+
+        f61c:	4642      	moveq	r2, r8
+
+    lifecycle::LifecycleManager::execute():
+
+        f61e:	f85a 303b 	ldr.w	r3, [sl, fp, lsl #3]
+
+        f622:	4941      	ldr	r1, [pc, #260]	; (f728 <<a href="./34706f0c5e02289a63b56c4736078214.html">lifecycle::LifecycleManager::execute()</a>+0x1b8>)
+
+        f624:	f7f1 fcea 	bl	ffc <<a href="../../../../util/include/util/logger/Logger.h/0ab01804358606b880086539418bdb3a.html">util::logger::Logger::info(unsigned char, char const*, ...)</a>>
+
+        f628:	4629      	mov	r1, r5
+
+        f62a:	4638      	mov	r0, r7
+
+        f62c:	f004 fe64 	bl	142f8 <<a href="../../../../asyncFreeRtos/src/async/Async.cpp/4dfe65e158466f2f9a73b985dc4b0ecc.html">async::execute(unsigned char, async::IRunnable&)</a>>
+
+        f630:	f894 303b 	ldrb.w	r3, [r4, #59]	; 0x3b
+
+        f634:	69e2      	ldr	r2, [r4, #28]
+
+        f636:	3601      	adds	r6, #1
+
+        f638:	5cd3      	ldrb	r3, [r2, r3]
+
+        f63a:	b2f6      	uxtb	r6, r6
+
+        f63c:	42b3      	cmp	r3, r6
+
+        f63e:	d94b      	bls.n	f6d8 <<a href="./34706f0c5e02289a63b56c4736078214.html">lifecycle::LifecycleManager::execute()</a>+0x168>
+
+    _ZNK3etl4spanIN9lifecycle16LifecycleManager13ComponentInfoELj4294967295EEixEj():
+
+        f640:	f8d4 a010 	ldr.w	sl, [r4, #16]
+
+    lifecycle::LifecycleManager::execute():
+
+        f644:	f8d4 c018 	ldr.w	ip, [r4, #24]
+
+    _ZN3etl7ivectorIN9lifecycle16LifecycleManager27ComponentTransitionExecutorEE12emplace_backIJRNS1_19ILifecycleComponentERhRNS6_10Transition4TypeEEEERS3_DpOT_():
+
+        f648:	f894 103a 	ldrb.w	r1, [r4, #58]	; 0x3a
+
+        f64c:	f8dc 5008 	ldr.w	r5, [ip, #8]
+
+    _ZN9lifecycle16LifecycleManager27ComponentTransitionExecutorC4ERNS_19ILifecycleComponentEhNS2_10Transition4TypeE():
+
+        f650:	4a36      	ldr	r2, [pc, #216]	; (f72c <<a href="./34706f0c5e02289a63b56c4736078214.html">lifecycle::LifecycleManager::execute()</a>+0x1bc>)
+
+    _ZNK3etl4spanIN9lifecycle16LifecycleManager13ComponentInfoELj4294967295EEixEj():
+
+        f652:	eb06 0b46 	add.w	fp, r6, r6, lsl #1
+
+        f656:	eb0a 03cb 	add.w	r3, sl, fp, lsl #3
+
+    _ZN5async9QueueNodeINS_9IRunnableEEC4Ev():
+
+        f65a:	2701      	movs	r7, #1
+
+    lifecycle::LifecycleManager::execute():
+
+        f65c:	6858      	ldr	r0, [r3, #4]
+
+    _ZN9lifecycle16LifecycleManager27ComponentTransitionExecutorC4ERNS_19ILifecycleComponentEhNS2_10Transition4TypeE():
+
+        f65e:	732e      	strb	r6, [r5, #12]
+
+        f660:	602a      	str	r2, [r5, #0]
+
+    lifecycle::LifecycleManager::execute():
+
+        f662:	6802      	ldr	r2, [r0, #0]
+
+    _ZN9lifecycle16LifecycleManager27ComponentTransitionExecutorC4ERNS_19ILifecycleComponentEhNS2_10Transition4TypeE():
+
+        f664:	60a8      	str	r0, [r5, #8]
+
+    _ZN3etl7ivectorIN9lifecycle16LifecycleManager27ComponentTransitionExecutorEE12emplace_backIJRNS1_19ILifecycleComponentERhRNS6_10Transition4TypeEEEERS3_DpOT_():
+
+        f666:	f105 0e10 	add.w	lr, r5, #16
+
+    lifecycle::LifecycleManager::execute():
+
+        f66a:	6852      	ldr	r2, [r2, #4]
+
+    _ZN9lifecycle16LifecycleManager27ComponentTransitionExecutorC4ERNS_19ILifecycleComponentEhNS2_10Transition4TypeE():
+
+        f66c:	7369      	strb	r1, [r5, #13]
+
+    _ZN5async9QueueNodeINS_9IRunnableEEC4Ev():
+
+        f66e:	606f      	str	r7, [r5, #4]
+
+    _ZN9lifecycle16LifecycleManager27ComponentTransitionExecutorC4ERNS_19ILifecycleComponentEhNS2_10Transition4TypeE():
+
+        f670:	73af      	strb	r7, [r5, #14]
+
+    _ZN3etl7ivectorIN9lifecycle16LifecycleManager27ComponentTransitionExecutorEE12emplace_backIJRNS1_19ILifecycleComponentERhRNS6_10Transition4TypeEEEERS3_DpOT_():
+
+        f672:	f8cc e008 	str.w	lr, [ip, #8]
+
+    lifecycle::LifecycleManager::execute():
+
+        f676:	751f      	strb	r7, [r3, #20]
+
+        f678:	7559      	strb	r1, [r3, #21]
+
+        f67a:	4790      	blx	r2
+
+        f67c:	4b26      	ldr	r3, [pc, #152]	; (f718 <<a href="./34706f0c5e02289a63b56c4736078214.html">lifecycle::LifecycleManager::execute()</a>+0x1a8>)
+
+        f67e:	28ff      	cmp	r0, #255	; 0xff
+
+        f680:	4607      	mov	r7, r0
+
+        f682:	7818      	ldrb	r0, [r3, #0]
+
+        f684:	f894 303a 	ldrb.w	r3, [r4, #58]	; 0x3a
+
+        f688:	bf08      	it	eq
+
+        f68a:	f894 7038 	ldrbeq.w	r7, [r4, #56]	; 0x38
+
+    _ZN9lifecycle16LifecycleManager19getTransitionStringENS_19ILifecycleComponent10Transition4TypeE():
+
+        f68e:	2b01      	cmp	r3, #1
+
+        f690:	d1c1      	bne.n	f616 <<a href="./34706f0c5e02289a63b56c4736078214.html">lifecycle::LifecycleManager::execute()</a>+0xa6>
+
+        f692:	4a27      	ldr	r2, [pc, #156]	; (f730 <<a href="./34706f0c5e02289a63b56c4736078214.html">lifecycle::LifecycleManager::execute()</a>+0x1c0>)
+
+        f694:	e7c3      	b.n	f61e <<a href="./34706f0c5e02289a63b56c4736078214.html">lifecycle::LifecycleManager::execute()</a>+0xae>
+
+    lifecycle::LifecycleManager::execute():
+
+        f696:	f894 103e 	ldrb.w	r1, [r4, #62]	; 0x3e
+
+        f69a:	428b      	cmp	r3, r1
+
+        f69c:	f67f af7b 	bls.w	f596 <<a href="./34706f0c5e02289a63b56c4736078214.html">lifecycle::LifecycleManager::execute()</a>+0x26>
+
+        f6a0:	4299      	cmp	r1, r3
+
+        f6a2:	d02f      	beq.n	f704 <<a href="./34706f0c5e02289a63b56c4736078214.html">lifecycle::LifecycleManager::execute()</a>+0x194>
+
+        f6a4:	3301      	adds	r3, #1
+
+        f6a6:	b2db      	uxtb	r3, r3
+
+        f6a8:	2201      	movs	r2, #1
+
+        f6aa:	f884 303f 	strb.w	r3, [r4, #63]	; 0x3f
+
+        f6ae:	f884 303b 	strb.w	r3, [r4, #59]	; 0x3b
+
+    _ZNK3etl8delegateIFmvEE8is_validEv():
+
+        f6b2:	6b23      	ldr	r3, [r4, #48]	; 0x30
+
+    lifecycle::LifecycleManager::execute():
+
+        f6b4:	f884 203a 	strb.w	r2, [r4, #58]	; 0x3a
+
+        f6b8:	2201      	movs	r2, #1
+
+        f6ba:	f884 2039 	strb.w	r2, [r4, #57]	; 0x39
+
+    _ZNK3etl8delegateIFmvEEclIJEEEmDpOT_():
+
+        f6be:	2b00      	cmp	r3, #0
+
+        f6c0:	d187      	bne.n	f5d2 <<a href="./34706f0c5e02289a63b56c4736078214.html">lifecycle::LifecycleManager::execute()</a>+0x62>
+
+    _ZN3etl9exceptionC4EPKcS2_i():
+
+        f6c2:	491c      	ldr	r1, [pc, #112]	; (f734 <<a href="./34706f0c5e02289a63b56c4736078214.html">lifecycle::LifecycleManager::execute()</a>+0x1c4>)
+
+    _ZNK3etl8delegateIFmvEEclIJEEEmDpOT_():
+
+        f6c4:	4b1c      	ldr	r3, [pc, #112]	; (f738 <<a href="./34706f0c5e02289a63b56c4736078214.html">lifecycle::LifecycleManager::execute()</a>+0x1c8>)
+
+    _ZN3etl9exceptionC4EPKcS2_i():
+
+        f6c6:	f44f 72bf 	mov.w	r2, #382	; 0x17e
+
+    _ZNK3etl8delegateIFmvEEclIJEEEmDpOT_():
+
+        f6ca:	681b      	ldr	r3, [r3, #0]
+
+    _ZN3etl9exceptionC4EPKcS2_i():
+
+        f6cc:	e9cd 1200 	strd	r1, r2, [sp]
+
+    _ZNK3etl8delegateIFmvEEclIJEEEmDpOT_():
+
+        f6d0:	4668      	mov	r0, sp
+
+        f6d2:	4798      	blx	r3
+
+        f6d4:	6b23      	ldr	r3, [r4, #48]	; 0x30
+
+        f6d6:	e77c      	b.n	f5d2 <<a href="./34706f0c5e02289a63b56c4736078214.html">lifecycle::LifecycleManager::execute()</a>+0x62>
+
+    lifecycle::LifecycleManager::execute():
+
+        f6d8:	69a3      	ldr	r3, [r4, #24]
+
+        f6da:	689a      	ldr	r2, [r3, #8]
+
+        f6dc:	685b      	ldr	r3, [r3, #4]
+
+        f6de:	429a      	cmp	r2, r3
+
+        f6e0:	f47f af59 	bne.w	f596 <<a href="./34706f0c5e02289a63b56c4736078214.html">lifecycle::LifecycleManager::execute()</a>+0x26>
+
+        f6e4:	f894 0038 	ldrb.w	r0, [r4, #56]	; 0x38
+
+        f6e8:	f104 0108 	add.w	r1, r4, #8
+
+        f6ec:	b003      	add	sp, #12
+
+        f6ee:	e8bd 4ff0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, lr}
+
+        f6f2:	f004 be01 	b.w	142f8 <<a href="../../../../asyncFreeRtos/src/async/Async.cpp/4dfe65e158466f2f9a73b985dc4b0ecc.html">async::execute(unsigned char, async::IRunnable&)</a>>
+
+    _ZN9lifecycle16LifecycleManager19getTransitionStringENS_19ILifecycleComponent10Transition4TypeE():
+
+        f6f6:	4a0e      	ldr	r2, [pc, #56]	; (f730 <<a href="./34706f0c5e02289a63b56c4736078214.html">lifecycle::LifecycleManager::execute()</a>+0x1c0>)
+
+        f6f8:	e77a      	b.n	f5f0 <<a href="./34706f0c5e02289a63b56c4736078214.html">lifecycle::LifecycleManager::execute()</a>+0x80>
+
+    lifecycle::LifecycleManager::execute():
+
+        f6fa:	f894 103e 	ldrb.w	r1, [r4, #62]	; 0x3e
+
+        f6fe:	428a      	cmp	r2, r1
+
+        f700:	d9d0      	bls.n	f6a4 <<a href="./34706f0c5e02289a63b56c4736078214.html">lifecycle::LifecycleManager::execute()</a>+0x134>
+
+        f702:	e7cd      	b.n	f6a0 <<a href="./34706f0c5e02289a63b56c4736078214.html">lifecycle::LifecycleManager::execute()</a>+0x130>
+
+        f704:	1c4b      	adds	r3, r1, #1
+
+        f706:	b2db      	uxtb	r3, r3
+
+        f708:	2200      	movs	r2, #0
+
+        f70a:	f884 303e 	strb.w	r3, [r4, #62]	; 0x3e
+
+        f70e:	f884 303b 	strb.w	r3, [r4, #59]	; 0x3b
+
+        f712:	f884 203a 	strb.w	r2, [r4, #58]	; 0x3a
+
+        f716:	e756      	b.n	f5c6 <<a href="./34706f0c5e02289a63b56c4736078214.html">lifecycle::LifecycleManager::execute()</a>+0x56>
+
+        f718:	1ffe0145 	.word	0x1ffe0145
+
+        f71c:	00025df8 	.word	0x00025df8
+
+        f720:	00025e08 	.word	0x00025e08
+
+        f724:	00025e34 	.word	0x00025e34
+
+        f728:	00025e40 	.word	0x00025e40
+
+        f72c:	00025f14 	.word	0x00025f14
+
+        f730:	00025e04 	.word	0x00025e04
+
+        f734:	00023dd8 	.word	0x00023dd8
+
+        f738:	1ffe0120 	.word	0x1ffe0120
+
+    </pre>
+
+    
+    <pre><a href="../../../include/lifecycle/LifecycleManager.h/cbad09b3a62f537105ec4f915fb928ec.html">non-virtual thunk to lifecycle::LifecycleManager::execute() (8)</a></pre>
+    
+
+    
+        <h1>Stack Worst-Case Scenarios</h1>
+        
+        <table class="table table-bordered table-hover table-condensed">
+        <thead>
+            <tr>
+                <th rowspan="2">#</th>
+                <th colspan="2" style="text-align: center">Stack</th>
+                <th colspan="2" style="text-align: center">Code</th>
+                <th rowspan="2" width="100%">Name</th>
+            </tr>
+            <tr>
+                <th class="col_size">&sum; = 116</th>
+                <th class="col_size"></th>
+                <th class="col_size">&sum;= 344</th>
+                <th class="col_size"></th>
+            </tr>
+        </thead>
+        <tbody>
+        
+            <tr>
+                <th>1</th>
+                <td class="col_size">
+                    
+                    116
+                    
+                    
+                </td>
+                <td class="col_size">
+            
+                48 
+            
+                </td>
+                <td class="col_size">
+                    
+                    
+                    344
+                    
+                    
+                </td>
+                <td class="col_size">68</td>
+                <td><a href="../../../../util/src/util/logger/Logger.cpp/d658d7c78dcca1ca01e61ef198b3eeaa.html" class="icon-function">util::logger::Logger::doLog(unsigned char, util::logger::Level, char const*, std::__va_list)</a></td>
+            </tr>
+        
+            <tr>
+                <th>2</th>
+                <td class="col_size">
+                    
+                    68
+                    
+                    
+                </td>
+                <td class="col_size">
+            
+                20 
+            
+                </td>
+                <td class="col_size">
+                    
+                    
+                    276
+                    
+                    
+                </td>
+                <td class="col_size">56</td>
+                <td><a href="../../../../util/include/util/logger/Logger.h/36d1ae1365862a45a74fa55e9d725fcd.html" class="icon-function">util::logger::Logger::debug(unsigned char, char const*, ...)</a></td>
+            </tr>
+        
+            <tr>
+                <th>3</th>
+                <td class="col_size">
+                    
+                    
+                </td>
+                <td class="col_size">
+            
+                </td>
+                <td class="col_size">
+                    
+                </td>
+                <td class="col_size">220</td>
+                <td><a href="./76a60044542a8fc150ed89fb6fd4be62.html" class="icon-function">lifecycle::LifecycleManager::checkLevelTransitionDone()</a></td>
+            </tr>
+        
+        </tbody>
+        
+        <tfoot>
+            <tr>
+                <th></th>
+                <th class="col_size">48
+                </th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </tfoot>
+        
+    </table>
+        
+        
+            <p>No callers for this function.</p>
+        
+    
+
+
+        </div>
+    <div id="page-footer">
+        <hr>
+        
+            brought to you with 💖
+            by <a href="https://twitter.com/hbehrens">Heiko Behrens</a>
+            <span class="secondary">– MIT license, copyright © 2014-2025</span>
+        
+    </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,1870 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../../../../../../../../../../static/css/style.css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <title>Symbol - puncover</title>
+    
+</head>
+<body>
+    <div class="container" id="content">
+        <div class="page-header">
+            <nav class="navbar navbar-default" role="navigation">
+              <div class="container-fluid">
+                <div class="navbar-header">
+                  <a class="navbar-brand" href="../../../../../../../../../../../index.html">
+                    Puncover
+                  </a>
+                </div>
+              </div>
+            </nav>
+          
+        </div>
+        <div id="inner_content">
+        
+    
+    <ol class="breadcrumb folders">
+        
+        <li><a href="../../../../../../../../../../../home.html">home</a></li>
+        
+        <li><a href="../../../../../../../../../../runner.html">runner</a></li>
+        
+        <li><a href="../../../../../../../../../work.html">work</a></li>
+        
+        <li><a href="../../../../../../../../openbsw.html">openbsw</a></li>
+        
+        <li><a href="../../../../../../../openbsw.html">openbsw</a></li>
+        
+        <li><a href="../../../../../../libs.html">libs</a></li>
+        
+        <li><a href="../../../../../3rdparty.html">3rdparty</a></li>
+        
+        <li><a href="../../../../printf.html">printf</a></li>
+        
+        <li><a href="../../../src.html">src</a></li>
+        
+        <li ><a href="../../printf.html">printf</a>
+            </li>
+
+        
+        <li class="active"><a href="../printf.c.html">printf.c</a>:824
+            </li>
+        
+    </ol>
+
+
+    <table class="table table-condensed">
+        <tbody>
+            <tr>
+                <th>Function</th>
+                <td colspan="5">
+                    <span class="icon-function">_vsnprintf</span>
+                </td>
+            </tr>
+
+            <tr>
+                <th rowspan="2"></th>
+                <th>Address</th>
+                <th>Remarks</th>
+                <th>Stack</th>
+                <th>Code</th>
+                <th>Static</th>
+            </tr>
+            <tr>
+                <td>0x0001099c</td>
+                <td>
+    
+    
+</td>
+                <td>96 (static)</td>
+                <td>1,572</td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <th>Callers (2)</th>
+                <td colspan="5">
+                
+                    <a href="./5312ec35df88995f2f21271b5c68c054.html">vfctprintf (36)</a>
+                    
+                        ,
+                    
+                
+                    <a href="./529535ce0d5bfecabb7841bebeaf251c.html">vsnprintf_ (32)</a>
+                    
+                
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Callees (2,
+                            <span title="sum of used bytes by all callees">
+                            Σ=792
+                            </span>
+                        )
+                    
+                </th>
+                <td colspan="5">
+                
+                    <a href="./ac6598d6032c1151c802f0c9a9979746.html">print_integer (656)</a>
+                    
+                        ,
+                    
+                
+                    <a href="./aead89a8c09454d3b52c82329b9d6539.html">out_rev_ (136)</a>
+                    
+                
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    
+    <pre><a href="./34be8d226a0fd9ecb36e23705a83b1ec.html">out_wrapped_function (12)</a></pre>
+    
+
+    <pre>
+
+    _vsnprintf():
+
+       1099c:	e92d 4ff0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, lr}
+
+       109a0:	461c      	mov	r4, r3
+
+       109a2:	f1b1 0a00 	subs.w	sl, r1, #0
+
+       109a6:	4b81      	ldr	r3, [pc, #516]	; (10bac <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x210>)
+
+       109a8:	b08f      	sub	sp, #60	; 0x3c
+
+       109aa:	bf18      	it	ne
+
+       109ac:	4603      	movne	r3, r0
+
+       109ae:	7820      	ldrb	r0, [r4, #0]
+
+       109b0:	9f18      	ldr	r7, [sp, #96]	; 0x60
+
+       109b2:	9308      	str	r3, [sp, #32]
+
+       109b4:	4693      	mov	fp, r2
+
+       109b6:	2800      	cmp	r0, #0
+
+       109b8:	f000 8247 	beq.w	10e4a <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x4ae>
+
+       109bc:	f04f 0900 	mov.w	r9, #0
+
+       109c0:	464d      	mov	r5, r9
+
+       109c2:	4698      	mov	r8, r3
+
+       109c4:	46b9      	mov	r9, r7
+
+       109c6:	e009      	b.n	109dc <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x40>
+
+       109c8:	462a      	mov	r2, r5
+
+       109ca:	465b      	mov	r3, fp
+
+       109cc:	4651      	mov	r1, sl
+
+       109ce:	47c0      	blx	r8
+
+       109d0:	3501      	adds	r5, #1
+
+       109d2:	3401      	adds	r4, #1
+
+       109d4:	7820      	ldrb	r0, [r4, #0]
+
+       109d6:	2800      	cmp	r0, #0
+
+       109d8:	f000 80aa 	beq.w	10b30 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x194>
+
+       109dc:	2825      	cmp	r0, #37	; 0x25
+
+       109de:	d1f3      	bne.n	109c8 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x2c>
+
+       109e0:	1c63      	adds	r3, r4, #1
+
+       109e2:	2100      	movs	r1, #0
+
+       109e4:	461c      	mov	r4, r3
+
+       109e6:	f813 0b01 	ldrb.w	r0, [r3], #1
+
+       109ea:	f1a0 0220 	sub.w	r2, r0, #32
+
+       109ee:	2a10      	cmp	r2, #16
+
+       109f0:	d80a      	bhi.n	10a08 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x6c>
+
+       109f2:	e8df f002 	tbb	[pc, r2]
+
+       109f6:	099a      	.short	0x099a
+
+       109f8:	09099709 	.word	0x09099709
+
+       109fc:	09090909 	.word	0x09090909
+
+       10a00:	91099409 	.word	0x91099409
+
+       10a04:	0909      	.short	0x0909
+
+       10a06:	8e          	.byte	0x8e
+
+       10a07:	00          	.byte	0x00
+
+       10a08:	f1a0 0330 	sub.w	r3, r0, #48	; 0x30
+
+       10a0c:	2b09      	cmp	r3, #9
+
+       10a0e:	f240 80ae 	bls.w	10b6e <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x1d2>
+
+       10a12:	282a      	cmp	r0, #42	; 0x2a
+
+       10a14:	f000 80b9 	beq.w	10b8a <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x1ee>
+
+       10a18:	2600      	movs	r6, #0
+
+       10a1a:	282e      	cmp	r0, #46	; 0x2e
+
+       10a1c:	f000 8098 	beq.w	10b50 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x1b4>
+
+       10a20:	2700      	movs	r7, #0
+
+       10a22:	f1a0 0368 	sub.w	r3, r0, #104	; 0x68
+
+       10a26:	2b12      	cmp	r3, #18
+
+       10a28:	d818      	bhi.n	10a5c <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0xc0>
+
+       10a2a:	e8df f013 	tbh	[pc, r3, lsl #1]
+
+       10a2e:	00f8      	.short	0x00f8
+
+       10a30:	01080017 	.word	0x01080017
+
+       10a34:	01000017 	.word	0x01000017
+
+       10a38:	00170017 	.word	0x00170017
+
+       10a3c:	00170017 	.word	0x00170017
+
+       10a40:	00170017 	.word	0x00170017
+
+       10a44:	00130017 	.word	0x00130017
+
+       10a48:	00170017 	.word	0x00170017
+
+       10a4c:	00170017 	.word	0x00170017
+
+       10a50:	00130017 	.word	0x00130017
+
+       10a54:	7860      	ldrb	r0, [r4, #1]
+
+       10a56:	f441 7180 	orr.w	r1, r1, #256	; 0x100
+
+       10a5a:	3401      	adds	r4, #1
+
+       10a5c:	f1a0 0325 	sub.w	r3, r0, #37	; 0x25
+
+       10a60:	2b53      	cmp	r3, #83	; 0x53
+
+       10a62:	f200 809c 	bhi.w	10b9e <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x202>
+
+       10a66:	e8df f013 	tbh	[pc, r3, lsl #1]
+
+       10a6a:	00ef      	.short	0x00ef
+
+       10a6c:	009a009a 	.word	0x009a009a
+
+       10a70:	009a009a 	.word	0x009a009a
+
+       10a74:	009a009a 	.word	0x009a009a
+
+       10a78:	009a009a 	.word	0x009a009a
+
+       10a7c:	009a009a 	.word	0x009a009a
+
+       10a80:	009a009a 	.word	0x009a009a
+
+       10a84:	009a009a 	.word	0x009a009a
+
+       10a88:	009a009a 	.word	0x009a009a
+
+       10a8c:	009a009a 	.word	0x009a009a
+
+       10a90:	009a009a 	.word	0x009a009a
+
+       10a94:	009a009a 	.word	0x009a009a
+
+       10a98:	009a009a 	.word	0x009a009a
+
+       10a9c:	009a009a 	.word	0x009a009a
+
+       10aa0:	009a009a 	.word	0x009a009a
+
+       10aa4:	009a009a 	.word	0x009a009a
+
+       10aa8:	009a009a 	.word	0x009a009a
+
+       10aac:	009a009a 	.word	0x009a009a
+
+       10ab0:	009a009a 	.word	0x009a009a
+
+       10ab4:	009a009a 	.word	0x009a009a
+
+       10ab8:	009a009a 	.word	0x009a009a
+
+       10abc:	009a009a 	.word	0x009a009a
+
+       10ac0:	009a009a 	.word	0x009a009a
+
+       10ac4:	009a009a 	.word	0x009a009a
+
+       10ac8:	009a009a 	.word	0x009a009a
+
+       10acc:	009a009a 	.word	0x009a009a
+
+       10ad0:	009a00a3 	.word	0x009a00a3
+
+       10ad4:	009a009a 	.word	0x009a009a
+
+       10ad8:	009a009a 	.word	0x009a009a
+
+       10adc:	009a009a 	.word	0x009a009a
+
+       10ae0:	009a009a 	.word	0x009a009a
+
+       10ae4:	010200a3 	.word	0x010200a3
+
+       10ae8:	009a00a3 	.word	0x009a00a3
+
+       10aec:	009a009a 	.word	0x009a009a
+
+       10af0:	00a3009a 	.word	0x00a3009a
+
+       10af4:	009a009a 	.word	0x009a009a
+
+       10af8:	009a009a 	.word	0x009a009a
+
+       10afc:	00a300f8 	.word	0x00a300f8
+
+       10b00:	009a016b 	.word	0x009a016b
+
+       10b04:	011b009a 	.word	0x011b009a
+
+       10b08:	00a3009a 	.word	0x00a3009a
+
+       10b0c:	009a009a 	.word	0x009a009a
+
+       10b10:	00a3      	.short	0x00a3
+
+       10b12:	f041 0101 	orr.w	r1, r1, #1
+
+       10b16:	e765      	b.n	109e4 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x48>
+
+       10b18:	f041 0102 	orr.w	r1, r1, #2
+
+       10b1c:	e762      	b.n	109e4 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x48>
+
+       10b1e:	f041 0104 	orr.w	r1, r1, #4
+
+       10b22:	e75f      	b.n	109e4 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x48>
+
+       10b24:	f041 0110 	orr.w	r1, r1, #16
+
+       10b28:	e75c      	b.n	109e4 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x48>
+
+       10b2a:	f041 0108 	orr.w	r1, r1, #8
+
+       10b2e:	e759      	b.n	109e4 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x48>
+
+       10b30:	46a9      	mov	r9, r5
+
+       10b32:	462c      	mov	r4, r5
+
+       10b34:	45cb      	cmp	fp, r9
+
+       10b36:	d801      	bhi.n	10b3c <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x1a0>
+
+       10b38:	f10b 39ff 	add.w	r9, fp, #4294967295	; 0xffffffff
+
+       10b3c:	9d08      	ldr	r5, [sp, #32]
+
+       10b3e:	465b      	mov	r3, fp
+
+       10b40:	464a      	mov	r2, r9
+
+       10b42:	4651      	mov	r1, sl
+
+       10b44:	2000      	movs	r0, #0
+
+       10b46:	47a8      	blx	r5
+
+       10b48:	4620      	mov	r0, r4
+
+       10b4a:	b00f      	add	sp, #60	; 0x3c
+
+       10b4c:	e8bd 8ff0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, pc}
+
+       10b50:	7860      	ldrb	r0, [r4, #1]
+
+       10b52:	f1a0 0230 	sub.w	r2, r0, #48	; 0x30
+
+       10b56:	2a09      	cmp	r2, #9
+
+       10b58:	f441 6180 	orr.w	r1, r1, #1024	; 0x400
+
+       10b5c:	f104 0301 	add.w	r3, r4, #1
+
+       10b60:	f240 8109 	bls.w	10d76 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x3da>
+
+       10b64:	282a      	cmp	r0, #42	; 0x2a
+
+       10b66:	f000 8115 	beq.w	10d94 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x3f8>
+
+       10b6a:	461c      	mov	r4, r3
+
+       10b6c:	e758      	b.n	10a20 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x84>
+
+    atoi_():
+
+       10b6e:	2600      	movs	r6, #0
+
+       10b70:	eb06 0686 	add.w	r6, r6, r6, lsl #2
+
+       10b74:	eb00 0646 	add.w	r6, r0, r6, lsl #1
+
+       10b78:	f814 0f01 	ldrb.w	r0, [r4, #1]!
+
+       10b7c:	f1a0 0330 	sub.w	r3, r0, #48	; 0x30
+
+       10b80:	2b09      	cmp	r3, #9
+
+       10b82:	f1a6 0630 	sub.w	r6, r6, #48	; 0x30
+
+       10b86:	d9f3      	bls.n	10b70 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x1d4>
+
+       10b88:	e747      	b.n	10a1a <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x7e>
+
+    _vsnprintf():
+
+       10b8a:	f859 6b04 	ldr.w	r6, [r9], #4
+
+       10b8e:	7860      	ldrb	r0, [r4, #1]
+
+       10b90:	2e00      	cmp	r6, #0
+
+       10b92:	bfbc      	itt	lt
+
+       10b94:	f041 0102 	orrlt.w	r1, r1, #2
+
+       10b98:	4276      	neglt	r6, r6
+
+       10b9a:	3401      	adds	r4, #1
+
+       10b9c:	e73d      	b.n	10a1a <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x7e>
+
+       10b9e:	462a      	mov	r2, r5
+
+       10ba0:	465b      	mov	r3, fp
+
+       10ba2:	4651      	mov	r1, sl
+
+       10ba4:	3401      	adds	r4, #1
+
+       10ba6:	3501      	adds	r5, #1
+
+       10ba8:	47c0      	blx	r8
+
+       10baa:	e713      	b.n	109d4 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x38>
+
+       10bac:	00010675 	.word	0x00010675
+
+       10bb0:	2878      	cmp	r0, #120	; 0x78
+
+       10bb2:	f000 8143 	beq.w	10e3c <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x4a0>
+
+       10bb6:	2858      	cmp	r0, #88	; 0x58
+
+       10bb8:	f000 80fc 	beq.w	10db4 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x418>
+
+       10bbc:	286f      	cmp	r0, #111	; 0x6f
+
+       10bbe:	f000 8103 	beq.w	10dc8 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x42c>
+
+       10bc2:	2862      	cmp	r0, #98	; 0x62
+
+       10bc4:	f000 81e4 	beq.w	10f90 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x5f4>
+
+       10bc8:	2869      	cmp	r0, #105	; 0x69
+
+       10bca:	f021 0310 	bic.w	r3, r1, #16
+
+       10bce:	f04f 020a 	mov.w	r2, #10
+
+       10bd2:	f040 80fb 	bne.w	10dcc <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x430>
+
+       10bd6:	0549      	lsls	r1, r1, #21
+
+       10bd8:	f140 80ff 	bpl.w	10dda <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x43e>
+
+       10bdc:	f023 0301 	bic.w	r3, r3, #1
+
+       10be0:	2869      	cmp	r0, #105	; 0x69
+
+       10be2:	f000 80fa 	beq.w	10dda <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x43e>
+
+       10be6:	2864      	cmp	r0, #100	; 0x64
+
+       10be8:	f000 80f7 	beq.w	10dda <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x43e>
+
+       10bec:	f413 7100 	ands.w	r1, r3, #512	; 0x200
+
+       10bf0:	f040 81b8 	bne.w	10f64 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x5c8>
+
+       10bf4:	05d8      	lsls	r0, r3, #23
+
+       10bf6:	f100 81ce 	bmi.w	10f96 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x5fa>
+
+       10bfa:	0658      	lsls	r0, r3, #25
+
+       10bfc:	f859 1b04 	ldr.w	r1, [r9], #4
+
+       10c00:	f100 819e 	bmi.w	10f40 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x5a4>
+
+       10c04:	0618      	lsls	r0, r3, #24
+
+       10c06:	bf48      	it	mi
+
+       10c08:	b289      	uxthmi	r1, r1
+
+       10c0a:	9306      	str	r3, [sp, #24]
+
+       10c0c:	2300      	movs	r3, #0
+
+       10c0e:	9203      	str	r2, [sp, #12]
+
+       10c10:	9605      	str	r6, [sp, #20]
+
+       10c12:	9704      	str	r7, [sp, #16]
+
+       10c14:	9100      	str	r1, [sp, #0]
+
+       10c16:	462a      	mov	r2, r5
+
+       10c18:	9302      	str	r3, [sp, #8]
+
+       10c1a:	9301      	str	r3, [sp, #4]
+
+       10c1c:	e0a3      	b.n	10d66 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x3ca>
+
+       10c1e:	7860      	ldrb	r0, [r4, #1]
+
+       10c20:	2868      	cmp	r0, #104	; 0x68
+
+       10c22:	f000 80f8 	beq.w	10e16 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x47a>
+
+       10c26:	f041 0180 	orr.w	r1, r1, #128	; 0x80
+
+       10c2a:	3401      	adds	r4, #1
+
+       10c2c:	e716      	b.n	10a5c <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0xc0>
+
+       10c2e:	7860      	ldrb	r0, [r4, #1]
+
+       10c30:	286c      	cmp	r0, #108	; 0x6c
+
+       10c32:	f000 80eb 	beq.w	10e0c <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x470>
+
+       10c36:	f441 7180 	orr.w	r1, r1, #256	; 0x100
+
+       10c3a:	3401      	adds	r4, #1
+
+       10c3c:	e70e      	b.n	10a5c <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0xc0>
+
+       10c3e:	7860      	ldrb	r0, [r4, #1]
+
+       10c40:	f441 7100 	orr.w	r1, r1, #512	; 0x200
+
+       10c44:	3401      	adds	r4, #1
+
+       10c46:	e709      	b.n	10a5c <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0xc0>
+
+       10c48:	1c68      	adds	r0, r5, #1
+
+       10c4a:	462a      	mov	r2, r5
+
+       10c4c:	465b      	mov	r3, fp
+
+       10c4e:	4605      	mov	r5, r0
+
+       10c50:	4651      	mov	r1, sl
+
+       10c52:	2025      	movs	r0, #37	; 0x25
+
+       10c54:	3401      	adds	r4, #1
+
+       10c56:	47c0      	blx	r8
+
+       10c58:	e6bc      	b.n	109d4 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x38>
+
+       10c5a:	064f      	lsls	r7, r1, #25
+
+       10c5c:	f100 80a1 	bmi.w	10da2 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x406>
+
+       10c60:	060e      	lsls	r6, r1, #24
+
+       10c62:	f140 811e 	bpl.w	10ea2 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x506>
+
+       10c66:	f859 3b04 	ldr.w	r3, [r9], #4
+
+       10c6a:	801d      	strh	r5, [r3, #0]
+
+       10c6c:	e081      	b.n	10d72 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x3d6>
+
+       10c6e:	078b      	lsls	r3, r1, #30
+
+       10c70:	f140 8101 	bpl.w	10e76 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x4da>
+
+       10c74:	f859 0b04 	ldr.w	r0, [r9], #4
+
+       10c78:	462a      	mov	r2, r5
+
+       10c7a:	465b      	mov	r3, fp
+
+       10c7c:	b2c0      	uxtb	r0, r0
+
+       10c7e:	4651      	mov	r1, sl
+
+       10c80:	47c0      	blx	r8
+
+       10c82:	1c6f      	adds	r7, r5, #1
+
+       10c84:	2e01      	cmp	r6, #1
+
+       10c86:	bf98      	it	ls
+
+       10c88:	463d      	movls	r5, r7
+
+       10c8a:	d972      	bls.n	10d72 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x3d6>
+
+       10c8c:	4435      	add	r5, r6
+
+       10c8e:	463a      	mov	r2, r7
+
+       10c90:	465b      	mov	r3, fp
+
+       10c92:	3701      	adds	r7, #1
+
+       10c94:	4651      	mov	r1, sl
+
+       10c96:	2020      	movs	r0, #32
+
+       10c98:	47c0      	blx	r8
+
+       10c9a:	42af      	cmp	r7, r5
+
+       10c9c:	d1f7      	bne.n	10c8e <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x2f2>
+
+       10c9e:	e068      	b.n	10d72 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x3d6>
+
+       10ca0:	464b      	mov	r3, r9
+
+       10ca2:	f853 2b04 	ldr.w	r2, [r3], #4
+
+       10ca6:	9209      	str	r2, [sp, #36]	; 0x24
+
+       10ca8:	930a      	str	r3, [sp, #40]	; 0x28
+
+       10caa:	2a00      	cmp	r2, #0
+
+       10cac:	f000 80b8 	beq.w	10e20 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x484>
+
+    strnlen_s_():
+
+       10cb0:	9b09      	ldr	r3, [sp, #36]	; 0x24
+
+       10cb2:	7818      	ldrb	r0, [r3, #0]
+
+    _vsnprintf():
+
+       10cb4:	2f00      	cmp	r7, #0
+
+       10cb6:	d178      	bne.n	10daa <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x40e>
+
+    strnlen_s_():
+
+       10cb8:	f06f 0301 	mvn.w	r3, #1
+
+       10cbc:	2800      	cmp	r0, #0
+
+       10cbe:	f000 8177 	beq.w	10fb0 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x614>
+
+       10cc2:	9a09      	ldr	r2, [sp, #36]	; 0x24
+
+       10cc4:	f8dd 9024 	ldr.w	r9, [sp, #36]	; 0x24
+
+       10cc8:	3301      	adds	r3, #1
+
+       10cca:	441a      	add	r2, r3
+
+       10ccc:	e002      	b.n	10cd4 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x338>
+
+       10cce:	454a      	cmp	r2, r9
+
+       10cd0:	f000 80cd 	beq.w	10e6e <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x4d2>
+
+       10cd4:	f819 3f01 	ldrb.w	r3, [r9, #1]!
+
+       10cd8:	2b00      	cmp	r3, #0
+
+       10cda:	d1f8      	bne.n	10cce <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x332>
+
+       10cdc:	9b09      	ldr	r3, [sp, #36]	; 0x24
+
+       10cde:	eba9 0303 	sub.w	r3, r9, r3
+
+       10ce2:	930b      	str	r3, [sp, #44]	; 0x2c
+
+    _vsnprintf():
+
+       10ce4:	f411 6380 	ands.w	r3, r1, #1024	; 0x400
+
+       10ce8:	930c      	str	r3, [sp, #48]	; 0x30
+
+       10cea:	d004      	beq.n	10cf6 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x35a>
+
+       10cec:	9b0b      	ldr	r3, [sp, #44]	; 0x2c
+
+       10cee:	42bb      	cmp	r3, r7
+
+       10cf0:	bf28      	it	cs
+
+       10cf2:	463b      	movcs	r3, r7
+
+       10cf4:	930b      	str	r3, [sp, #44]	; 0x2c
+
+       10cf6:	f011 0302 	ands.w	r3, r1, #2
+
+       10cfa:	930d      	str	r3, [sp, #52]	; 0x34
+
+       10cfc:	f000 8103 	beq.w	10f06 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x56a>
+
+       10d00:	2800      	cmp	r0, #0
+
+       10d02:	f000 80f0 	beq.w	10ee6 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x54a>
+
+       10d06:	f8dd 9024 	ldr.w	r9, [sp, #36]	; 0x24
+
+       10d0a:	9609      	str	r6, [sp, #36]	; 0x24
+
+       10d0c:	462a      	mov	r2, r5
+
+       10d0e:	9e0c      	ldr	r6, [sp, #48]	; 0x30
+
+       10d10:	e000      	b.n	10d14 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x378>
+
+       10d12:	462a      	mov	r2, r5
+
+       10d14:	465b      	mov	r3, fp
+
+       10d16:	4651      	mov	r1, sl
+
+       10d18:	b11e      	cbz	r6, 10d22 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x386>
+
+       10d1a:	f107 3cff 	add.w	ip, r7, #4294967295	; 0xffffffff
+
+       10d1e:	b137      	cbz	r7, 10d2e <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x392>
+
+       10d20:	4667      	mov	r7, ip
+
+       10d22:	47c0      	blx	r8
+
+       10d24:	f819 0f01 	ldrb.w	r0, [r9, #1]!
+
+       10d28:	3501      	adds	r5, #1
+
+       10d2a:	2800      	cmp	r0, #0
+
+       10d2c:	d1f1      	bne.n	10d12 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x376>
+
+       10d2e:	9b0d      	ldr	r3, [sp, #52]	; 0x34
+
+       10d30:	9e09      	ldr	r6, [sp, #36]	; 0x24
+
+       10d32:	2b00      	cmp	r3, #0
+
+       10d34:	f040 80d7 	bne.w	10ee6 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x54a>
+
+       10d38:	f8dd 9028 	ldr.w	r9, [sp, #40]	; 0x28
+
+       10d3c:	3401      	adds	r4, #1
+
+       10d3e:	e649      	b.n	109d4 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x38>
+
+       10d40:	f859 3b04 	ldr.w	r3, [r9], #4
+
+       10d44:	f441 5180 	orr.w	r1, r1, #4096	; 0x1000
+
+       10d48:	f041 0101 	orr.w	r1, r1, #1
+
+       10d4c:	2b00      	cmp	r3, #0
+
+       10d4e:	d07f      	beq.n	10e50 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x4b4>
+
+       10d50:	9300      	str	r3, [sp, #0]
+
+       10d52:	2300      	movs	r3, #0
+
+       10d54:	9302      	str	r3, [sp, #8]
+
+       10d56:	9301      	str	r3, [sp, #4]
+
+       10d58:	230a      	movs	r3, #10
+
+       10d5a:	9305      	str	r3, [sp, #20]
+
+       10d5c:	2310      	movs	r3, #16
+
+       10d5e:	9106      	str	r1, [sp, #24]
+
+       10d60:	9704      	str	r7, [sp, #16]
+
+       10d62:	462a      	mov	r2, r5
+
+       10d64:	9303      	str	r3, [sp, #12]
+
+       10d66:	465b      	mov	r3, fp
+
+       10d68:	4651      	mov	r1, sl
+
+       10d6a:	4640      	mov	r0, r8
+
+       10d6c:	f7ff fcc8 	bl	10700 <<a href="./ac6598d6032c1151c802f0c9a9979746.html">print_integer</a>>
+
+       10d70:	4605      	mov	r5, r0
+
+       10d72:	3401      	adds	r4, #1
+
+       10d74:	e62e      	b.n	109d4 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x38>
+
+    atoi_():
+
+       10d76:	2700      	movs	r7, #0
+
+       10d78:	eb07 0787 	add.w	r7, r7, r7, lsl #2
+
+       10d7c:	eb00 0047 	add.w	r0, r0, r7, lsl #1
+
+       10d80:	f1a0 0730 	sub.w	r7, r0, #48	; 0x30
+
+       10d84:	f813 0f01 	ldrb.w	r0, [r3, #1]!
+
+       10d88:	f1a0 0230 	sub.w	r2, r0, #48	; 0x30
+
+       10d8c:	2a09      	cmp	r2, #9
+
+       10d8e:	d9f3      	bls.n	10d78 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x3dc>
+
+       10d90:	461c      	mov	r4, r3
+
+       10d92:	e646      	b.n	10a22 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x86>
+
+    _vsnprintf():
+
+       10d94:	f859 7b04 	ldr.w	r7, [r9], #4
+
+       10d98:	78a0      	ldrb	r0, [r4, #2]
+
+       10d9a:	ea27 77e7 	bic.w	r7, r7, r7, asr #31
+
+       10d9e:	3402      	adds	r4, #2
+
+       10da0:	e63f      	b.n	10a22 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x86>
+
+       10da2:	f859 3b04 	ldr.w	r3, [r9], #4
+
+       10da6:	701d      	strb	r5, [r3, #0]
+
+       10da8:	e7e3      	b.n	10d72 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x3d6>
+
+    strnlen_s_():
+
+       10daa:	2800      	cmp	r0, #0
+
+       10dac:	f000 8102 	beq.w	10fb4 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x618>
+
+       10db0:	1e7b      	subs	r3, r7, #1
+
+       10db2:	e786      	b.n	10cc2 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x326>
+
+    _vsnprintf():
+
+       10db4:	f021 030c 	bic.w	r3, r1, #12
+
+       10db8:	0549      	lsls	r1, r1, #21
+
+       10dba:	f043 0320 	orr.w	r3, r3, #32
+
+       10dbe:	f04f 0210 	mov.w	r2, #16
+
+       10dc2:	f53f af0b 	bmi.w	10bdc <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x240>
+
+       10dc6:	e711      	b.n	10bec <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x250>
+
+       10dc8:	2208      	movs	r2, #8
+
+       10dca:	460b      	mov	r3, r1
+
+       10dcc:	2864      	cmp	r0, #100	; 0x64
+
+       10dce:	bf18      	it	ne
+
+       10dd0:	4619      	movne	r1, r3
+
+       10dd2:	d134      	bne.n	10e3e <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x4a2>
+
+       10dd4:	0559      	lsls	r1, r3, #21
+
+       10dd6:	f53f af01 	bmi.w	10bdc <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x240>
+
+       10dda:	0599      	lsls	r1, r3, #22
+
+       10ddc:	d46f      	bmi.n	10ebe <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x522>
+
+       10dde:	05d8      	lsls	r0, r3, #23
+
+       10de0:	f859 1b04 	ldr.w	r1, [r9], #4
+
+       10de4:	d403      	bmi.n	10dee <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x452>
+
+       10de6:	0658      	lsls	r0, r3, #25
+
+       10de8:	f140 80a6 	bpl.w	10f38 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x59c>
+
+       10dec:	b249      	sxtb	r1, r1
+
+       10dee:	2900      	cmp	r1, #0
+
+       10df0:	f340 80b2 	ble.w	10f58 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x5bc>
+
+       10df4:	468c      	mov	ip, r1
+
+       10df6:	17c8      	asrs	r0, r1, #31
+
+       10df8:	0fc9      	lsrs	r1, r1, #31
+
+       10dfa:	9203      	str	r2, [sp, #12]
+
+       10dfc:	e9cd c000 	strd	ip, r0, [sp]
+
+       10e00:	9306      	str	r3, [sp, #24]
+
+       10e02:	9605      	str	r6, [sp, #20]
+
+       10e04:	9704      	str	r7, [sp, #16]
+
+       10e06:	9102      	str	r1, [sp, #8]
+
+       10e08:	462a      	mov	r2, r5
+
+       10e0a:	e7ac      	b.n	10d66 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x3ca>
+
+       10e0c:	78a0      	ldrb	r0, [r4, #2]
+
+       10e0e:	f441 7140 	orr.w	r1, r1, #768	; 0x300
+
+       10e12:	3402      	adds	r4, #2
+
+       10e14:	e622      	b.n	10a5c <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0xc0>
+
+       10e16:	78a0      	ldrb	r0, [r4, #2]
+
+       10e18:	f041 01c0 	orr.w	r1, r1, #192	; 0xc0
+
+       10e1c:	3402      	adds	r4, #2
+
+       10e1e:	e61d      	b.n	10a5c <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0xc0>
+
+       10e20:	4b65      	ldr	r3, [pc, #404]	; (10fb8 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x61c>)
+
+       10e22:	9300      	str	r3, [sp, #0]
+
+       10e24:	2306      	movs	r3, #6
+
+       10e26:	9103      	str	r1, [sp, #12]
+
+       10e28:	462a      	mov	r2, r5
+
+       10e2a:	9301      	str	r3, [sp, #4]
+
+       10e2c:	9602      	str	r6, [sp, #8]
+
+       10e2e:	465b      	mov	r3, fp
+
+       10e30:	4651      	mov	r1, sl
+
+       10e32:	4640      	mov	r0, r8
+
+       10e34:	f7ff fc20 	bl	10678 <<a href="./aead89a8c09454d3b52c82329b9d6539.html">out_rev_</a>>
+
+       10e38:	4605      	mov	r5, r0
+
+       10e3a:	e77d      	b.n	10d38 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x39c>
+
+       10e3c:	2210      	movs	r2, #16
+
+       10e3e:	f021 030c 	bic.w	r3, r1, #12
+
+       10e42:	0549      	lsls	r1, r1, #21
+
+       10e44:	f57f aecc 	bpl.w	10be0 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x244>
+
+       10e48:	e6c8      	b.n	10bdc <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x240>
+
+       10e4a:	4604      	mov	r4, r0
+
+       10e4c:	4681      	mov	r9, r0
+
+       10e4e:	e671      	b.n	10b34 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x198>
+
+       10e50:	4b5a      	ldr	r3, [pc, #360]	; (10fbc <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x620>)
+
+       10e52:	9300      	str	r3, [sp, #0]
+
+       10e54:	230a      	movs	r3, #10
+
+       10e56:	9302      	str	r3, [sp, #8]
+
+       10e58:	2305      	movs	r3, #5
+
+       10e5a:	9103      	str	r1, [sp, #12]
+
+       10e5c:	462a      	mov	r2, r5
+
+       10e5e:	9301      	str	r3, [sp, #4]
+
+       10e60:	4651      	mov	r1, sl
+
+       10e62:	465b      	mov	r3, fp
+
+       10e64:	4640      	mov	r0, r8
+
+       10e66:	f7ff fc07 	bl	10678 <<a href="./aead89a8c09454d3b52c82329b9d6539.html">out_rev_</a>>
+
+       10e6a:	4605      	mov	r5, r0
+
+       10e6c:	e781      	b.n	10d72 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x3d6>
+
+    strnlen_s_():
+
+       10e6e:	9b09      	ldr	r3, [sp, #36]	; 0x24
+
+       10e70:	1ad3      	subs	r3, r2, r3
+
+       10e72:	930b      	str	r3, [sp, #44]	; 0x2c
+
+       10e74:	e736      	b.n	10ce4 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x348>
+
+    _vsnprintf():
+
+       10e76:	2e01      	cmp	r6, #1
+
+       10e78:	f240 8098 	bls.w	10fac <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x610>
+
+       10e7c:	1e6b      	subs	r3, r5, #1
+
+       10e7e:	441e      	add	r6, r3
+
+       10e80:	462a      	mov	r2, r5
+
+       10e82:	465b      	mov	r3, fp
+
+       10e84:	3501      	adds	r5, #1
+
+       10e86:	4651      	mov	r1, sl
+
+       10e88:	2020      	movs	r0, #32
+
+       10e8a:	47c0      	blx	r8
+
+       10e8c:	42b5      	cmp	r5, r6
+
+       10e8e:	d1f7      	bne.n	10e80 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x4e4>
+
+       10e90:	f859 0b04 	ldr.w	r0, [r9], #4
+
+       10e94:	465b      	mov	r3, fp
+
+       10e96:	b2c0      	uxtb	r0, r0
+
+       10e98:	4632      	mov	r2, r6
+
+       10e9a:	4651      	mov	r1, sl
+
+       10e9c:	1c75      	adds	r5, r6, #1
+
+       10e9e:	47c0      	blx	r8
+
+       10ea0:	e767      	b.n	10d72 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x3d6>
+
+       10ea2:	f411 7380 	ands.w	r3, r1, #256	; 0x100
+
+       10ea6:	d106      	bne.n	10eb6 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x51a>
+
+       10ea8:	0588      	lsls	r0, r1, #22
+
+       10eaa:	d504      	bpl.n	10eb6 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x51a>
+
+       10eac:	f859 2b04 	ldr.w	r2, [r9], #4
+
+       10eb0:	e9c2 5300 	strd	r5, r3, [r2]
+
+       10eb4:	e75d      	b.n	10d72 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x3d6>
+
+       10eb6:	f859 3b04 	ldr.w	r3, [r9], #4
+
+       10eba:	601d      	str	r5, [r3, #0]
+
+       10ebc:	e759      	b.n	10d72 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x3d6>
+
+       10ebe:	f109 0907 	add.w	r9, r9, #7
+
+       10ec2:	f029 0907 	bic.w	r9, r9, #7
+
+       10ec6:	f8d9 1004 	ldr.w	r1, [r9, #4]
+
+       10eca:	f859 0b08 	ldr.w	r0, [r9], #8
+
+       10ece:	9203      	str	r2, [sp, #12]
+
+       10ed0:	0fca      	lsrs	r2, r1, #31
+
+       10ed2:	2900      	cmp	r1, #0
+
+       10ed4:	9306      	str	r3, [sp, #24]
+
+       10ed6:	9605      	str	r6, [sp, #20]
+
+       10ed8:	9704      	str	r7, [sp, #16]
+
+       10eda:	9202      	str	r2, [sp, #8]
+
+       10edc:	db32      	blt.n	10f44 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x5a8>
+
+       10ede:	e9cd 0100 	strd	r0, r1, [sp]
+
+       10ee2:	462a      	mov	r2, r5
+
+       10ee4:	e73f      	b.n	10d66 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x3ca>
+
+       10ee6:	9b0b      	ldr	r3, [sp, #44]	; 0x2c
+
+       10ee8:	429e      	cmp	r6, r3
+
+       10eea:	462f      	mov	r7, r5
+
+       10eec:	f67f af24 	bls.w	10d38 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x39c>
+
+       10ef0:	1970      	adds	r0, r6, r5
+
+       10ef2:	1ac5      	subs	r5, r0, r3
+
+       10ef4:	463a      	mov	r2, r7
+
+       10ef6:	465b      	mov	r3, fp
+
+       10ef8:	3701      	adds	r7, #1
+
+       10efa:	4651      	mov	r1, sl
+
+       10efc:	2020      	movs	r0, #32
+
+       10efe:	47c0      	blx	r8
+
+       10f00:	42af      	cmp	r7, r5
+
+       10f02:	d1f7      	bne.n	10ef4 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x558>
+
+       10f04:	e718      	b.n	10d38 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x39c>
+
+       10f06:	9a0b      	ldr	r2, [sp, #44]	; 0x2c
+
+       10f08:	4296      	cmp	r6, r2
+
+       10f0a:	f102 0301 	add.w	r3, r2, #1
+
+       10f0e:	d91e      	bls.n	10f4e <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x5b2>
+
+       10f10:	eb06 0905 	add.w	r9, r6, r5
+
+       10f14:	eba9 0902 	sub.w	r9, r9, r2
+
+       10f18:	462a      	mov	r2, r5
+
+       10f1a:	465b      	mov	r3, fp
+
+       10f1c:	3501      	adds	r5, #1
+
+       10f1e:	4651      	mov	r1, sl
+
+       10f20:	2020      	movs	r0, #32
+
+       10f22:	47c0      	blx	r8
+
+       10f24:	45a9      	cmp	r9, r5
+
+       10f26:	d1f7      	bne.n	10f18 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x57c>
+
+       10f28:	9b09      	ldr	r3, [sp, #36]	; 0x24
+
+       10f2a:	7818      	ldrb	r0, [r3, #0]
+
+       10f2c:	1c73      	adds	r3, r6, #1
+
+       10f2e:	930b      	str	r3, [sp, #44]	; 0x2c
+
+       10f30:	2800      	cmp	r0, #0
+
+       10f32:	f47f aee8 	bne.w	10d06 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x36a>
+
+       10f36:	e6ff      	b.n	10d38 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x39c>
+
+       10f38:	0618      	lsls	r0, r3, #24
+
+       10f3a:	bf48      	it	mi
+
+       10f3c:	b209      	sxthmi	r1, r1
+
+       10f3e:	e756      	b.n	10dee <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x452>
+
+       10f40:	b2c9      	uxtb	r1, r1
+
+       10f42:	e662      	b.n	10c0a <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x26e>
+
+       10f44:	4243      	negs	r3, r0
+
+       10f46:	4618      	mov	r0, r3
+
+       10f48:	eb61 0141 	sbc.w	r1, r1, r1, lsl #1
+
+       10f4c:	e7c7      	b.n	10ede <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x542>
+
+       10f4e:	930b      	str	r3, [sp, #44]	; 0x2c
+
+       10f50:	2800      	cmp	r0, #0
+
+       10f52:	f47f aed8 	bne.w	10d06 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x36a>
+
+       10f56:	e6ef      	b.n	10d38 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x39c>
+
+       10f58:	17c8      	asrs	r0, r1, #31
+
+       10f5a:	f1d1 0c00 	rsbs	ip, r1, #0
+
+       10f5e:	eb60 0040 	sbc.w	r0, r0, r0, lsl #1
+
+       10f62:	e749      	b.n	10df8 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x45c>
+
+       10f64:	9306      	str	r3, [sp, #24]
+
+       10f66:	f109 0907 	add.w	r9, r9, #7
+
+       10f6a:	2300      	movs	r3, #0
+
+       10f6c:	9203      	str	r2, [sp, #12]
+
+       10f6e:	9302      	str	r3, [sp, #8]
+
+       10f70:	9605      	str	r6, [sp, #20]
+
+       10f72:	9704      	str	r7, [sp, #16]
+
+       10f74:	f029 0907 	bic.w	r9, r9, #7
+
+       10f78:	e8f9 6702 	ldrd	r6, r7, [r9], #8
+
+       10f7c:	462a      	mov	r2, r5
+
+       10f7e:	e9cd 6700 	strd	r6, r7, [sp]
+
+       10f82:	465b      	mov	r3, fp
+
+       10f84:	4651      	mov	r1, sl
+
+       10f86:	4640      	mov	r0, r8
+
+       10f88:	f7ff fbba 	bl	10700 <<a href="./ac6598d6032c1151c802f0c9a9979746.html">print_integer</a>>
+
+       10f8c:	4605      	mov	r5, r0
+
+       10f8e:	e6f0      	b.n	10d72 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x3d6>
+
+       10f90:	2202      	movs	r2, #2
+
+       10f92:	460b      	mov	r3, r1
+
+       10f94:	e71a      	b.n	10dcc <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x430>
+
+       10f96:	9203      	str	r2, [sp, #12]
+
+       10f98:	9306      	str	r3, [sp, #24]
+
+       10f9a:	9605      	str	r6, [sp, #20]
+
+       10f9c:	9704      	str	r7, [sp, #16]
+
+       10f9e:	9102      	str	r1, [sp, #8]
+
+       10fa0:	f859 3b04 	ldr.w	r3, [r9], #4
+
+       10fa4:	462a      	mov	r2, r5
+
+       10fa6:	e9cd 3100 	strd	r3, r1, [sp]
+
+       10faa:	e6dc      	b.n	10d66 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x3ca>
+
+       10fac:	462e      	mov	r6, r5
+
+       10fae:	e76f      	b.n	10e90 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x4f4>
+
+    strnlen_s_():
+
+       10fb0:	970b      	str	r7, [sp, #44]	; 0x2c
+
+       10fb2:	e697      	b.n	10ce4 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x348>
+
+       10fb4:	900b      	str	r0, [sp, #44]	; 0x2c
+
+       10fb6:	e695      	b.n	10ce4 <<a href="./6d7d630ec5529648e33ae989eebb2cb7.html">_vsnprintf</a>+0x348>
+
+       10fb8:	00026758 	.word	0x00026758
+
+       10fbc:	00026760 	.word	0x00026760
+
+    </pre>
+
+    
+    <pre><a href="./529535ce0d5bfecabb7841bebeaf251c.html">vsnprintf_ (32)</a></pre>
+    
+
+    
+        <h1>Stack Worst-Case Scenarios</h1>
+        
+        <table class="table table-bordered table-hover table-condensed">
+        <thead>
+            <tr>
+                <th rowspan="2">#</th>
+                <th colspan="2" style="text-align: center">Stack</th>
+                <th colspan="2" style="text-align: center">Code</th>
+                <th rowspan="2" width="100%">Name</th>
+            </tr>
+            <tr>
+                <th class="col_size">&sum; = 784</th>
+                <th class="col_size"></th>
+                <th class="col_size">&sum;= 792</th>
+                <th class="col_size"></th>
+            </tr>
+        </thead>
+        <tbody>
+        
+            <tr>
+                <th>1</th>
+                <td class="col_size">
+                    
+                    784
+                    
+                    
+                </td>
+                <td class="col_size">
+            
+                40 
+            
+                </td>
+                <td class="col_size">
+                    
+                    
+                    792
+                    
+                    
+                </td>
+                <td class="col_size">136</td>
+                <td><a href="./aead89a8c09454d3b52c82329b9d6539.html" class="icon-function">out_rev_</a></td>
+            </tr>
+        
+            <tr>
+                <th>2</th>
+                <td class="col_size">
+                    
+                    744
+                    
+                    
+                </td>
+                <td class="col_size">
+            
+                112 
+            
+                </td>
+                <td class="col_size">
+                    
+                </td>
+                <td class="col_size">656</td>
+                <td><a href="./ac6598d6032c1151c802f0c9a9979746.html" class="icon-function">print_integer</a></td>
+            </tr>
+        
+        </tbody>
+        
+        <tfoot>
+            <tr>
+                <th></th>
+                <th class="col_size">632
+                </th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </tfoot>
+        
+    </table>
+        
+        
+        <table class="table table-bordered table-hover table-condensed">
+        <thead>
+            <tr>
+                <th rowspan="2">#</th>
+                <th colspan="2" style="text-align: center">Stack</th>
+                <th colspan="2" style="text-align: center">Code</th>
+                <th rowspan="2" width="100%">Name</th>
+            </tr>
+            <tr>
+                <th class="col_size">&sum; = 632</th>
+                <th class="col_size"></th>
+                <th class="col_size">&sum;= 5,364</th>
+                <th class="col_size"></th>
+            </tr>
+        </thead>
+        <tbody>
+        
+            <tr>
+                <th>1</th>
+                <td class="col_size">
+                    
+                    632
+                    
+                    
+                </td>
+                <td class="col_size">
+            
+                96 
+            
+                </td>
+                <td class="col_size">
+                    
+                    
+                    5,364
+                    
+                    
+                </td>
+                <td class="col_size">1,572</td>
+                <td><a href="./6d7d630ec5529648e33ae989eebb2cb7.html" class="icon-function">_vsnprintf</a></td>
+            </tr>
+        
+            <tr>
+                <th>2</th>
+                <td class="col_size">
+                    
+                    536
+                    
+                    
+                </td>
+                <td class="col_size">
+            
+                16 
+            
+                </td>
+                <td class="col_size">
+                    
+                    
+                    3,792
+                    
+                    
+                </td>
+                <td class="col_size">32</td>
+                <td><a href="./529535ce0d5bfecabb7841bebeaf251c.html" class="icon-function">vsnprintf_</a></td>
+            </tr>
+        
+            <tr>
+                <th>3</th>
+                <td class="col_size">
+                    
+                    520
+                    
+                    
+                </td>
+                <td class="col_size">
+            
+                16 
+            
+                </td>
+                <td class="col_size">
+                    
+                    
+                    3,760
+                    
+                    
+                </td>
+                <td class="col_size">52</td>
+                <td><a href="../../../../../../executables/referenceApp/application/src/logger/logger.cpp/98866fb3d81ee8db78cbfd1e2dfd931d.html" class="icon-function">log_lwipInfo</a></td>
+            </tr>
+        
+            <tr>
+                <th>4</th>
+                <td class="col_size">
+                    
+                    504
+                    
+                    
+                </td>
+                <td class="col_size">
+            
+                16 
+            
+                </td>
+                <td class="col_size">
+                    
+                    
+                    3,708
+                    
+                    
+                </td>
+                <td class="col_size">60</td>
+                <td><a href="../../../../lwip/src/core/memp.c/39d50c52143357af896630c36b8c515f.html" class="icon-function">memp_free</a></td>
+            </tr>
+        
+            <tr>
+                <th>5</th>
+                <td class="col_size">
+                    
+                    
+                </td>
+                <td class="col_size">
+            
+                </td>
+                <td class="col_size">
+                    
+                    
+                    3,648
+                    
+                    
+                </td>
+                <td class="col_size">112</td>
+                <td><a href="../../../../lwip/src/core/pbuf.c/9b6fd2596874539050b4147be9634d35.html" class="icon-function">pbuf_free</a></td>
+            </tr>
+        
+            <tr>
+                <th>6</th>
+                <td class="col_size">
+                    
+                    488
+                    
+                    
+                </td>
+                <td class="col_size">
+            
+                32 
+            
+                </td>
+                <td class="col_size">
+                    
+                    
+                    3,536
+                    
+                    
+                </td>
+                <td class="col_size">276</td>
+                <td><a href="../../../../lwip/src/core/pbuf.c/00f9d6c635a80626d607c18477d3504a.html" class="icon-function">pbuf_alloc</a></td>
+            </tr>
+        
+            <tr>
+                <th>7</th>
+                <td class="col_size">
+                    
+                    456
+                    
+                    
+                </td>
+                <td class="col_size">
+            
+                32 
+            
+                </td>
+                <td class="col_size">
+                    
+                    
+                    3,260
+                    
+                    
+                </td>
+                <td class="col_size">160</td>
+                <td><a href="../../../../lwip/src/core/tcp_out.c/4c45a821c89299dd22544f20511fc68d.html" class="icon-function">tcp_output_alloc_header_common</a></td>
+            </tr>
+        
+            <tr>
+                <th>8</th>
+                <td class="col_size">
+                    
+                    424
+                    
+                    
+                </td>
+                <td class="col_size">
+            
+                24 
+            
+                </td>
+                <td class="col_size">
+                    
+                    
+                    3,100
+                    
+                    
+                </td>
+                <td class="col_size">92</td>
+                <td><a href="../../../../lwip/src/core/tcp_out.c/750286e53faf5e6c6518b73dc75330b6.html" class="icon-function">tcp_send_empty_ack</a></td>
+            </tr>
+        
+            <tr>
+                <th>9</th>
+                <td class="col_size">
+                    
+                    400
+                    
+                    
+                </td>
+                <td class="col_size">
+            
+                64 
+            
+                </td>
+                <td class="col_size">
+                    
+                    
+                    3,008
+                    
+                    
+                </td>
+                <td class="col_size">1,060</td>
+                <td><a href="../../../../lwip/src/core/tcp_out.c/65142df0c7be77da97e3dbbc90844f1a.html" class="icon-function">tcp_output</a></td>
+            </tr>
+        
+            <tr>
+                <th>10</th>
+                <td class="col_size">
+                    
+                    336
+                    
+                    
+                </td>
+                <td class="col_size">
+            
+                8 
+            
+                </td>
+                <td class="col_size">
+                    
+                    
+                    1,948
+                    
+                    
+                </td>
+                <td class="col_size">92</td>
+                <td><a href="../../../../lwip/src/core/tcp.c/b9fce7e0b1692c774e7c7904cc0c9f1e.html" class="icon-function">tcp_pcb_remove</a></td>
+            </tr>
+        
+            <tr>
+                <th>11</th>
+                <td class="col_size">
+                    
+                    328
+                    
+                    
+                </td>
+                <td class="col_size">
+            
+                64 
+            
+                </td>
+                <td class="col_size">
+                    
+                    
+                    1,856
+                    
+                    
+                </td>
+                <td class="col_size">308</td>
+                <td><a href="../../../../lwip/src/core/tcp.c/65bf4b4d1cd8c2ab7ef11aba4b48c88a.html" class="icon-function">tcp_abandon</a></td>
+            </tr>
+        
+            <tr>
+                <th>12</th>
+                <td class="col_size">
+                    
+                    264
+                    
+                    
+                </td>
+                <td class="col_size">
+            
+                32 
+            
+                </td>
+                <td class="col_size">
+                    
+                    
+                    1,548
+                    
+                    
+                </td>
+                <td class="col_size">204</td>
+                <td><a href="../../../../lwip/src/core/tcp.c/df26d4b78a28ebef470fd1ef7233d047.html" class="icon-function">tcp_netif_ip_addr_changed</a></td>
+            </tr>
+        
+            <tr>
+                <th>13</th>
+                <td class="col_size">
+                    
+                    232
+                    
+                    
+                </td>
+                <td class="col_size">
+            
+                24 
+            
+                </td>
+                <td class="col_size">
+                    
+                    
+                    1,344
+                    
+                    
+                </td>
+                <td class="col_size">116</td>
+                <td><a href="../../../../lwip/src/core/netif.c/02ca1881b5a0fcf35803d50c5cd5a9a6.html" class="icon-function">netif_do_set_ipaddr</a></td>
+            </tr>
+        
+            <tr>
+                <th>14</th>
+                <td class="col_size">
+                    
+                    208
+                    
+                    
+                </td>
+                <td class="col_size">
+            
+                48 
+            
+                </td>
+                <td class="col_size">
+                    
+                    
+                    1,228
+                    
+                    
+                </td>
+                <td class="col_size">200</td>
+                <td><a href="../../../../lwip/src/core/netif.c/7d4b6ac49a1bb495f62582300a5d9e4a.html" class="icon-function">netif_set_addr</a></td>
+            </tr>
+        
+            <tr>
+                <th>15</th>
+                <td class="col_size">
+                    
+                    160
+                    
+                    
+                </td>
+                <td class="col_size">
+            
+                64 
+            
+                </td>
+                <td class="col_size">
+                    
+                    
+                    1,028
+                    
+                    
+                </td>
+                <td class="col_size">348</td>
+                <td><a href="../../../../lwip/src/core/ipv4/dhcp.c/4daa8f7f4379045adbdfb1ced5875b2d.html" class="icon-function">dhcp_release_and_stop</a></td>
+            </tr>
+        
+            <tr>
+                <th>16</th>
+                <td class="col_size">
+                    
+                    96
+                    
+                    
+                </td>
+                <td class="col_size">
+            
+                24 
+            
+                </td>
+                <td class="col_size">
+                    
+                    
+                    680
+                    
+                    
+                </td>
+                <td class="col_size">204</td>
+                <td><a href="../../../../lwip/src/core/ipv4/dhcp.c/7d1c7091a5300ee38546c4eec2908e12.html" class="icon-function">dhcp_start</a></td>
+            </tr>
+        
+            <tr>
+                <th>17</th>
+                <td class="col_size">
+                </td>
+                <td class="col_size">
+            
+                72 
+            
+                </td>
+                <td class="col_size">
+                    
+                </td>
+                <td class="col_size">476</td>
+                <td><a href="../../../../lwip/src/core/ipv4/dhcp.c/625c8433015a8cb580108e0f733b653d.html" class="icon-function">dhcp_coarse_tmr</a></td>
+            </tr>
+        
+        </tbody>
+        
+    </table>
+        
+    
+
+
+        </div>
+    <div id="page-footer">
+        <hr>
+        
+            brought to you with 💖
+            by <a href="https://twitter.com/hbehrens">Heiko Behrens</a>
+            <span class="secondary">– MIT license, copyright © 2014-2025</span>
+        
+    </div>
+    </div>
+</body>
+</html>

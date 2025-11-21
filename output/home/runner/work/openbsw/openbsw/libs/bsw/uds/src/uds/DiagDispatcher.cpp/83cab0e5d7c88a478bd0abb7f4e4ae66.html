@@ -1,0 +1,711 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../../../../../../../../../../static/css/style.css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <title>Symbol - puncover</title>
+    
+</head>
+<body>
+    <div class="container" id="content">
+        <div class="page-header">
+            <nav class="navbar navbar-default" role="navigation">
+              <div class="container-fluid">
+                <div class="navbar-header">
+                  <a class="navbar-brand" href="../../../../../../../../../../../index.html">
+                    Puncover
+                  </a>
+                </div>
+              </div>
+            </nav>
+          
+        </div>
+        <div id="inner_content">
+        
+    
+    <ol class="breadcrumb folders">
+        
+        <li><a href="../../../../../../../../../../../home.html">home</a></li>
+        
+        <li><a href="../../../../../../../../../../runner.html">runner</a></li>
+        
+        <li><a href="../../../../../../../../../work.html">work</a></li>
+        
+        <li><a href="../../../../../../../../openbsw.html">openbsw</a></li>
+        
+        <li><a href="../../../../../../../openbsw.html">openbsw</a></li>
+        
+        <li><a href="../../../../../../libs.html">libs</a></li>
+        
+        <li><a href="../../../../../bsw.html">bsw</a></li>
+        
+        <li><a href="../../../../uds.html">uds</a></li>
+        
+        <li><a href="../../../src.html">src</a></li>
+        
+        <li ><a href="../../uds.html">uds</a>
+            </li>
+
+        
+        <li class="active"><a href="../DiagDispatcher.cpp.html">DiagDispatcher.cpp</a>:240
+            </li>
+        
+    </ol>
+
+
+    <table class="table table-condensed">
+        <tbody>
+            <tr>
+                <th>Function</th>
+                <td colspan="5">
+                    <span class="icon-function">uds::DiagDispatcher::dispatchIncomingRequest(transport::TransportJob&amp;, uds::DiagnosisConfiguration&amp;, uds::DiagDispatcher&amp;, uds::DiagJobRoot&amp;, transport::ITransportMessageProvidingListener&amp;, transport::ITransportMessageProcessedListener*, etl::delegate&lt;void (transport::TransportMessage const*)&gt;)</span>
+                </td>
+            </tr>
+
+            <tr>
+                <th rowspan="2"></th>
+                <th>Address</th>
+                <th>Remarks</th>
+                <th>Stack</th>
+                <th>Code</th>
+                <th>Static</th>
+            </tr>
+            <tr>
+                <td>0x0001a074</td>
+                <td>
+    
+    
+</td>
+                <td>48 (static)</td>
+                <td>300</td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <th>Callers (1)</th>
+                <td colspan="5">
+                
+                    <a href="./e00d400272b7aeeb8e6c582d70d53119.html">uds::DiagDispatcher::processQueue() (128)</a>
+                    
+                
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Callees (6,
+                            <span title="sum of used bytes by all callees">
+                            Σ=540
+                            </span>
+                        )
+                    
+                </th>
+                <td colspan="5">
+                
+                    <a href="./66f104899e828bdba9960cba28fbfa0f.html">uds::DiagDispatcher::requestIncomingConnection(transport::TransportMessage&amp;) (164)</a>
+                    
+                        ,
+                    
+                
+                    <a href="../../../../util/include/util/logger/Logger.h/36d1ae1365862a45a74fa55e9d725fcd.html">util::logger::Logger::debug(unsigned char, char const*, ...) (56)</a>
+                    
+                        ,
+                    
+                
+                    <a href="../connection/IncomingDiagConnection.cpp/98aa1036e1899478fd44d0933f659743.html">uds::IncomingDiagConnection::sendNegativeResponse(unsigned char, uds::AbstractDiagJob&amp;) (124)</a>
+                    
+                        ,
+                    
+                
+                    <a href="../../../../util/include/util/logger/Logger.h/fee4073070054ecc160dbd4d6b194f36.html">util::logger::Logger::warn(unsigned char, char const*, ...) (56)</a>
+                    
+                        ,
+                    
+                
+                    <a href="../../../../util/include/util/logger/Logger.h/6be3c2c875c07680bc44f008f830057e.html">util::logger::Logger::critical(unsigned char, char const*, ...) (56)</a>
+                    
+                        ,
+                    
+                
+                    <a href="./d9374cd92411ec4be9a09217698f9422.html">uds::DiagDispatcher::copyFunctionalRequest(transport::TransportMessage&amp;, transport::ITransportMessageProvidingListener&amp;, uds::DiagnosisConfiguration&amp;) (84)</a>
+                    
+                
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    
+    <pre><a href="./66f104899e828bdba9960cba28fbfa0f.html">uds::DiagDispatcher::requestIncomingConnection(transport::TransportMessage&amp;) (164)</a></pre>
+    
+
+    <pre>
+
+    uds::DiagDispatcher::dispatchIncomingRequest(transport::TransportJob&, uds::DiagnosisConfiguration&, uds::DiagDispatcher&, uds::DiagJobRoot&, transport::ITransportMessageProvidingListener&, transport::ITransportMessageProcessedListener*, etl::delegate<void (transport::TransportMessage const*)>):
+
+       1a074:	e92d 43f0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, lr}
+
+       1a078:	4605      	mov	r5, r0
+
+       1a07a:	461e      	mov	r6, r3
+
+    _ZNK9transport12TransportJob19getTransportMessageEv():
+
+       1a07c:	682f      	ldr	r7, [r5, #0]
+
+    uds::DiagDispatcher::dispatchIncomingRequest(transport::TransportJob&, uds::DiagnosisConfiguration&, uds::DiagDispatcher&, uds::DiagJobRoot&, transport::ITransportMessageProvidingListener&, transport::ITransportMessageProcessedListener*, etl::delegate<void (transport::TransportMessage const*)>):
+
+       1a07e:	897c      	ldrh	r4, [r7, #10]
+
+       1a080:	f64f 73ff 	movw	r3, #65535	; 0xffff
+
+       1a084:	429c      	cmp	r4, r3
+
+    _ZN9transport16TransportMessage16setTargetAddressEt():
+
+       1a086:	bf04      	itt	eq
+
+       1a088:	880b      	ldrheq	r3, [r1, #0]
+
+       1a08a:	817b      	strheq	r3, [r7, #10]
+
+    uds::DiagDispatcher::dispatchIncomingRequest(transport::TransportJob&, uds::DiagnosisConfiguration&, uds::DiagDispatcher&, uds::DiagJobRoot&, transport::ITransportMessageProvidingListener&, transport::ITransportMessageProcessedListener*, etl::delegate<void (transport::TransportMessage const*)>):
+
+       1a08c:	b085      	sub	sp, #20
+
+       1a08e:	7a0b      	ldrb	r3, [r1, #8]
+
+       1a090:	980c      	ldr	r0, [sp, #48]	; 0x30
+
+       1a092:	f8dd 9034 	ldr.w	r9, [sp, #52]	; 0x34
+
+       1a096:	4690      	mov	r8, r2
+
+       1a098:	b923      	cbnz	r3, 1a0a4 <<a href="./83cab0e5d7c88a478bd0abb7f4e4ae66.html">uds::DiagDispatcher::dispatchIncomingRequest(transport::TransportJob&, uds::DiagnosisConfiguration&, uds::DiagDispatcher&, uds::DiagJobRoot&, transport::ITransportMessageProvidingListener&, transport::ITransportMessageProcessedListener*, etl::delegate<void (transport::TransportMessage const*)>)</a>+0x30>
+
+    _ZNK9transport16TransportMessage13sourceAddressEv():
+
+       1a09a:	893a      	ldrh	r2, [r7, #8]
+
+    _ZN9transport22TransportConfiguration15isTesterAddressEt():
+
+       1a09c:	f1a2 03f0 	sub.w	r3, r2, #240	; 0xf0
+
+       1a0a0:	2b0d      	cmp	r3, #13
+
+       1a0a2:	d82f      	bhi.n	1a104 <<a href="./83cab0e5d7c88a478bd0abb7f4e4ae66.html">uds::DiagDispatcher::dispatchIncomingRequest(transport::TransportJob&, uds::DiagnosisConfiguration&, uds::DiagDispatcher&, uds::DiagJobRoot&, transport::ITransportMessageProvidingListener&, transport::ITransportMessageProcessedListener*, etl::delegate<void (transport::TransportMessage const*)>)</a>+0x90>
+
+    uds::DiagDispatcher::dispatchIncomingRequest(transport::TransportJob&, uds::DiagnosisConfiguration&, uds::DiagDispatcher&, uds::DiagJobRoot&, transport::ITransportMessageProvidingListener&, transport::ITransportMessageProcessedListener*, etl::delegate<void (transport::TransportMessage const*)>):
+
+       1a0a4:	7a4b      	ldrb	r3, [r1, #9]
+
+       1a0a6:	b113      	cbz	r3, 1a0ae <<a href="./83cab0e5d7c88a478bd0abb7f4e4ae66.html">uds::DiagDispatcher::dispatchIncomingRequest(transport::TransportJob&, uds::DiagnosisConfiguration&, uds::DiagDispatcher&, uds::DiagJobRoot&, transport::ITransportMessageProvidingListener&, transport::ITransportMessageProcessedListener*, etl::delegate<void (transport::TransportMessage const*)>)</a>+0x3a>
+
+       1a0a8:	897b      	ldrh	r3, [r7, #10]
+
+       1a0aa:	2bdf      	cmp	r3, #223	; 0xdf
+
+       1a0ac:	d050      	beq.n	1a150 <<a href="./83cab0e5d7c88a478bd0abb7f4e4ae66.html">uds::DiagDispatcher::dispatchIncomingRequest(transport::TransportJob&, uds::DiagnosisConfiguration&, uds::DiagDispatcher&, uds::DiagJobRoot&, transport::ITransportMessageProvidingListener&, transport::ITransportMessageProcessedListener*, etl::delegate<void (transport::TransportMessage const*)>)</a>+0xdc>
+
+       1a0ae:	4639      	mov	r1, r7
+
+       1a0b0:	4640      	mov	r0, r8
+
+       1a0b2:	f7ff ff8d 	bl	19fd0 <<a href="./66f104899e828bdba9960cba28fbfa0f.html">uds::DiagDispatcher::requestIncomingConnection(transport::TransportMessage&)</a>>
+
+       1a0b6:	4604      	mov	r4, r0
+
+       1a0b8:	2800      	cmp	r0, #0
+
+       1a0ba:	d035      	beq.n	1a128 <<a href="./83cab0e5d7c88a478bd0abb7f4e4ae66.html">uds::DiagDispatcher::dispatchIncomingRequest(transport::TransportJob&, uds::DiagnosisConfiguration&, uds::DiagDispatcher&, uds::DiagJobRoot&, transport::ITransportMessageProvidingListener&, transport::ITransportMessageProcessedListener*, etl::delegate<void (transport::TransportMessage const*)>)</a>+0xb4>
+
+       1a0bc:	4932      	ldr	r1, [pc, #200]	; (1a188 <<a href="./83cab0e5d7c88a478bd0abb7f4e4ae66.html">uds::DiagDispatcher::dispatchIncomingRequest(transport::TransportJob&, uds::DiagnosisConfiguration&, uds::DiagDispatcher&, uds::DiagJobRoot&, transport::ITransportMessageProvidingListener&, transport::ITransportMessageProcessedListener*, etl::delegate<void (transport::TransportMessage const*)>)</a>+0x114>)
+
+       1a0be:	88c3      	ldrh	r3, [r0, #6]
+
+       1a0c0:	8882      	ldrh	r2, [r0, #4]
+
+       1a0c2:	7808      	ldrb	r0, [r1, #0]
+
+       1a0c4:	7aa1      	ldrb	r1, [r4, #10]
+
+       1a0c6:	9100      	str	r1, [sp, #0]
+
+       1a0c8:	4930      	ldr	r1, [pc, #192]	; (1a18c <<a href="./83cab0e5d7c88a478bd0abb7f4e4ae66.html">uds::DiagDispatcher::dispatchIncomingRequest(transport::TransportJob&, uds::DiagnosisConfiguration&, uds::DiagDispatcher&, uds::DiagJobRoot&, transport::ITransportMessageProvidingListener&, transport::ITransportMessageProcessedListener*, etl::delegate<void (transport::TransportMessage const*)>)</a>+0x118>)
+
+       1a0ca:	f7e7 fce9 	bl	1aa0 <<a href="../../../../util/include/util/logger/Logger.h/36d1ae1365862a45a74fa55e9d725fcd.html">util::logger::Logger::debug(unsigned char, char const*, ...)</a>>
+
+    _ZNK9transport12TransportJob19getTransportMessageEv():
+
+       1a0ce:	682a      	ldr	r2, [r5, #0]
+
+    uds::DiagDispatcher::dispatchIncomingRequest(transport::TransportJob&, uds::DiagnosisConfiguration&, uds::DiagDispatcher&, uds::DiagJobRoot&, transport::ITransportMessageProvidingListener&, transport::ITransportMessageProcessedListener*, etl::delegate<void (transport::TransportMessage const*)>):
+
+       1a0d0:	6831      	ldr	r1, [r6, #0]
+
+    _ZNK9transport12TransportJob20getProcessedListenerEv():
+
+       1a0d2:	686b      	ldr	r3, [r5, #4]
+
+    uds::DiagDispatcher::dispatchIncomingRequest(transport::TransportJob&, uds::DiagnosisConfiguration&, uds::DiagDispatcher&, uds::DiagJobRoot&, transport::ITransportMessageProvidingListener&, transport::ITransportMessageProcessedListener*, etl::delegate<void (transport::TransportMessage const*)>):
+
+       1a0d4:	698d      	ldr	r5, [r1, #24]
+
+       1a0d6:	60e3      	str	r3, [r4, #12]
+
+       1a0d8:	4621      	mov	r1, r4
+
+       1a0da:	8993      	ldrh	r3, [r2, #12]
+
+       1a0dc:	6812      	ldr	r2, [r2, #0]
+
+       1a0de:	4630      	mov	r0, r6
+
+       1a0e0:	47a8      	blx	r5
+
+       1a0e2:	28ff      	cmp	r0, #255	; 0xff
+
+       1a0e4:	d102      	bne.n	1a0ec <<a href="./83cab0e5d7c88a478bd0abb7f4e4ae66.html">uds::DiagDispatcher::dispatchIncomingRequest(transport::TransportJob&, uds::DiagnosisConfiguration&, uds::DiagDispatcher&, uds::DiagJobRoot&, transport::ITransportMessageProvidingListener&, transport::ITransportMessageProcessedListener*, etl::delegate<void (transport::TransportMessage const*)>)</a>+0x78>
+
+       1a0e6:	b005      	add	sp, #20
+
+       1a0e8:	e8bd 83f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, pc}
+
+       1a0ec:	4601      	mov	r1, r0
+
+       1a0ee:	4632      	mov	r2, r6
+
+       1a0f0:	4620      	mov	r0, r4
+
+       1a0f2:	f7fe fb45 	bl	18780 <<a href="../connection/IncomingDiagConnection.cpp/98aa1036e1899478fd44d0933f659743.html">uds::IncomingDiagConnection::sendNegativeResponse(unsigned char, uds::AbstractDiagJob&)</a>>
+
+       1a0f6:	6823      	ldr	r3, [r4, #0]
+
+       1a0f8:	68db      	ldr	r3, [r3, #12]
+
+       1a0fa:	4620      	mov	r0, r4
+
+       1a0fc:	b005      	add	sp, #20
+
+       1a0fe:	e8bd 43f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, lr}
+
+       1a102:	4718      	bx	r3
+
+    _ZN9transport22TransportConfiguration15isTesterAddressEt():
+
+       1a104:	f5a2 636f 	sub.w	r3, r2, #3824	; 0xef0
+
+       1a108:	2b0d      	cmp	r3, #13
+
+       1a10a:	d9cb      	bls.n	1a0a4 <<a href="./83cab0e5d7c88a478bd0abb7f4e4ae66.html">uds::DiagDispatcher::dispatchIncomingRequest(transport::TransportJob&, uds::DiagnosisConfiguration&, uds::DiagDispatcher&, uds::DiagJobRoot&, transport::ITransportMessageProvidingListener&, transport::ITransportMessageProcessedListener*, etl::delegate<void (transport::TransportMessage const*)>)</a>+0x30>
+
+    uds::DiagDispatcher::dispatchIncomingRequest(transport::TransportJob&, uds::DiagnosisConfiguration&, uds::DiagDispatcher&, uds::DiagJobRoot&, transport::ITransportMessageProvidingListener&, transport::ITransportMessageProcessedListener*, etl::delegate<void (transport::TransportMessage const*)>):
+
+       1a10c:	4b1e      	ldr	r3, [pc, #120]	; (1a188 <<a href="./83cab0e5d7c88a478bd0abb7f4e4ae66.html">uds::DiagDispatcher::dispatchIncomingRequest(transport::TransportJob&, uds::DiagnosisConfiguration&, uds::DiagDispatcher&, uds::DiagJobRoot&, transport::ITransportMessageProvidingListener&, transport::ITransportMessageProcessedListener*, etl::delegate<void (transport::TransportMessage const*)>)</a>+0x114>)
+
+       1a10e:	4920      	ldr	r1, [pc, #128]	; (1a190 <<a href="./83cab0e5d7c88a478bd0abb7f4e4ae66.html">uds::DiagDispatcher::dispatchIncomingRequest(transport::TransportJob&, uds::DiagnosisConfiguration&, uds::DiagDispatcher&, uds::DiagJobRoot&, transport::ITransportMessageProvidingListener&, transport::ITransportMessageProcessedListener*, etl::delegate<void (transport::TransportMessage const*)>)</a>+0x11c>)
+
+       1a110:	7818      	ldrb	r0, [r3, #0]
+
+       1a112:	f7e9 f877 	bl	3204 <<a href="../../../../util/include/util/logger/Logger.h/fee4073070054ecc160dbd4d6b194f36.html">util::logger::Logger::warn(unsigned char, char const*, ...)</a>>
+
+    _ZNK9transport12TransportJob20getProcessedListenerEv():
+
+       1a116:	6868      	ldr	r0, [r5, #4]
+
+    uds::DiagDispatcher::dispatchIncomingRequest(transport::TransportJob&, uds::DiagnosisConfiguration&, uds::DiagDispatcher&, uds::DiagJobRoot&, transport::ITransportMessageProvidingListener&, transport::ITransportMessageProcessedListener*, etl::delegate<void (transport::TransportMessage const*)>):
+
+       1a118:	6829      	ldr	r1, [r5, #0]
+
+       1a11a:	6803      	ldr	r3, [r0, #0]
+
+       1a11c:	681b      	ldr	r3, [r3, #0]
+
+       1a11e:	2204      	movs	r2, #4
+
+       1a120:	b005      	add	sp, #20
+
+       1a122:	e8bd 43f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, lr}
+
+       1a126:	4718      	bx	r3
+
+       1a128:	4b1a      	ldr	r3, [pc, #104]	; (1a194 <<a href="./83cab0e5d7c88a478bd0abb7f4e4ae66.html">uds::DiagDispatcher::dispatchIncomingRequest(transport::TransportJob&, uds::DiagnosisConfiguration&, uds::DiagDispatcher&, uds::DiagJobRoot&, transport::ITransportMessageProvidingListener&, transport::ITransportMessageProcessedListener*, etl::delegate<void (transport::TransportMessage const*)>)</a>+0x120>)
+
+       1a12a:	491b      	ldr	r1, [pc, #108]	; (1a198 <<a href="./83cab0e5d7c88a478bd0abb7f4e4ae66.html">uds::DiagDispatcher::dispatchIncomingRequest(transport::TransportJob&, uds::DiagnosisConfiguration&, uds::DiagDispatcher&, uds::DiagJobRoot&, transport::ITransportMessageProvidingListener&, transport::ITransportMessageProcessedListener*, etl::delegate<void (transport::TransportMessage const*)>)</a>+0x124>)
+
+       1a12c:	7818      	ldrb	r0, [r3, #0]
+
+       1a12e:	f7fd f83d 	bl	171ac <<a href="../../../../util/include/util/logger/Logger.h/6be3c2c875c07680bc44f008f830057e.html">util::logger::Logger::critical(unsigned char, char const*, ...)</a>>
+
+    _ZNK3etl8delegateIFvPKN9transport16TransportMessageEEE8is_validEv():
+
+       1a132:	9b0f      	ldr	r3, [sp, #60]	; 0x3c
+
+    _ZNK9transport12TransportJob19getTransportMessageEv():
+
+       1a134:	6829      	ldr	r1, [r5, #0]
+
+    uds::DiagDispatcher::dispatchIncomingRequest(transport::TransportJob&, uds::DiagnosisConfiguration&, uds::DiagDispatcher&, uds::DiagJobRoot&, transport::ITransportMessageProvidingListener&, transport::ITransportMessageProcessedListener*, etl::delegate<void (transport::TransportMessage const*)>):
+
+       1a136:	b11b      	cbz	r3, 1a140 <<a href="./83cab0e5d7c88a478bd0abb7f4e4ae66.html">uds::DiagDispatcher::dispatchIncomingRequest(transport::TransportJob&, uds::DiagnosisConfiguration&, uds::DiagDispatcher&, uds::DiagJobRoot&, transport::ITransportMessageProvidingListener&, transport::ITransportMessageProcessedListener*, etl::delegate<void (transport::TransportMessage const*)>)</a>+0xcc>
+
+    _ZNK3etl8delegateIFvPKN9transport16TransportMessageEEEclIJRKPS2_EEEvDpOT_():
+
+       1a138:	980e      	ldr	r0, [sp, #56]	; 0x38
+
+       1a13a:	9103      	str	r1, [sp, #12]
+
+       1a13c:	4798      	blx	r3
+
+       1a13e:	9903      	ldr	r1, [sp, #12]
+
+    _ZNK9transport12TransportJob20getProcessedListenerEv():
+
+       1a140:	6868      	ldr	r0, [r5, #4]
+
+    uds::DiagDispatcher::dispatchIncomingRequest(transport::TransportJob&, uds::DiagnosisConfiguration&, uds::DiagDispatcher&, uds::DiagJobRoot&, transport::ITransportMessageProvidingListener&, transport::ITransportMessageProcessedListener*, etl::delegate<void (transport::TransportMessage const*)>):
+
+       1a142:	6803      	ldr	r3, [r0, #0]
+
+       1a144:	681b      	ldr	r3, [r3, #0]
+
+       1a146:	2200      	movs	r2, #0
+
+       1a148:	b005      	add	sp, #20
+
+       1a14a:	e8bd 43f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, lr}
+
+       1a14e:	4718      	bx	r3
+
+       1a150:	460a      	mov	r2, r1
+
+       1a152:	4601      	mov	r1, r0
+
+       1a154:	4638      	mov	r0, r7
+
+       1a156:	f7ff fdf1 	bl	19d3c <<a href="./d9374cd92411ec4be9a09217698f9422.html">uds::DiagDispatcher::copyFunctionalRequest(transport::TransportMessage&, transport::ITransportMessageProvidingListener&, uds::DiagnosisConfiguration&)</a>>
+
+       1a15a:	4604      	mov	r4, r0
+
+       1a15c:	b170      	cbz	r0, 1a17c <<a href="./83cab0e5d7c88a478bd0abb7f4e4ae66.html">uds::DiagDispatcher::dispatchIncomingRequest(transport::TransportJob&, uds::DiagnosisConfiguration&, uds::DiagDispatcher&, uds::DiagJobRoot&, transport::ITransportMessageProvidingListener&, transport::ITransportMessageProcessedListener*, etl::delegate<void (transport::TransportMessage const*)>)</a>+0x108>
+
+    _ZNK9transport12TransportJob20getProcessedListenerEv():
+
+       1a15e:	6868      	ldr	r0, [r5, #4]
+
+    uds::DiagDispatcher::dispatchIncomingRequest(transport::TransportJob&, uds::DiagnosisConfiguration&, uds::DiagDispatcher&, uds::DiagJobRoot&, transport::ITransportMessageProvidingListener&, transport::ITransportMessageProcessedListener*, etl::delegate<void (transport::TransportMessage const*)>):
+
+       1a160:	b120      	cbz	r0, 1a16c <<a href="./83cab0e5d7c88a478bd0abb7f4e4ae66.html">uds::DiagDispatcher::dispatchIncomingRequest(transport::TransportJob&, uds::DiagnosisConfiguration&, uds::DiagDispatcher&, uds::DiagJobRoot&, transport::ITransportMessageProvidingListener&, transport::ITransportMessageProcessedListener*, etl::delegate<void (transport::TransportMessage const*)>)</a>+0xf8>
+
+       1a162:	6803      	ldr	r3, [r0, #0]
+
+       1a164:	4639      	mov	r1, r7
+
+       1a166:	681b      	ldr	r3, [r3, #0]
+
+       1a168:	2200      	movs	r2, #0
+
+       1a16a:	4798      	blx	r3
+
+       1a16c:	f1b9 0f00 	cmp.w	r9, #0
+
+       1a170:	d001      	beq.n	1a176 <<a href="./83cab0e5d7c88a478bd0abb7f4e4ae66.html">uds::DiagDispatcher::dispatchIncomingRequest(transport::TransportJob&, uds::DiagnosisConfiguration&, uds::DiagDispatcher&, uds::DiagJobRoot&, transport::ITransportMessageProvidingListener&, transport::ITransportMessageProcessedListener*, etl::delegate<void (transport::TransportMessage const*)>)</a>+0x102>
+
+    _ZN9transport12TransportJob20setProcessedListenerEPNS_34ITransportMessageProcessedListenerE():
+
+       1a172:	f8c5 9004 	str.w	r9, [r5, #4]
+
+    _ZN9transport12TransportJob19setTransportMessageERNS_16TransportMessageE():
+
+       1a176:	602c      	str	r4, [r5, #0]
+
+       1a178:	4627      	mov	r7, r4
+
+       1a17a:	e798      	b.n	1a0ae <<a href="./83cab0e5d7c88a478bd0abb7f4e4ae66.html">uds::DiagDispatcher::dispatchIncomingRequest(transport::TransportJob&, uds::DiagnosisConfiguration&, uds::DiagDispatcher&, uds::DiagJobRoot&, transport::ITransportMessageProvidingListener&, transport::ITransportMessageProcessedListener*, etl::delegate<void (transport::TransportMessage const*)>)</a>+0x3a>
+
+    uds::DiagDispatcher::dispatchIncomingRequest(transport::TransportJob&, uds::DiagnosisConfiguration&, uds::DiagDispatcher&, uds::DiagJobRoot&, transport::ITransportMessageProvidingListener&, transport::ITransportMessageProcessedListener*, etl::delegate<void (transport::TransportMessage const*)>):
+
+       1a17c:	4b05      	ldr	r3, [pc, #20]	; (1a194 <<a href="./83cab0e5d7c88a478bd0abb7f4e4ae66.html">uds::DiagDispatcher::dispatchIncomingRequest(transport::TransportJob&, uds::DiagnosisConfiguration&, uds::DiagDispatcher&, uds::DiagJobRoot&, transport::ITransportMessageProvidingListener&, transport::ITransportMessageProcessedListener*, etl::delegate<void (transport::TransportMessage const*)>)</a>+0x120>)
+
+       1a17e:	4907      	ldr	r1, [pc, #28]	; (1a19c <<a href="./83cab0e5d7c88a478bd0abb7f4e4ae66.html">uds::DiagDispatcher::dispatchIncomingRequest(transport::TransportJob&, uds::DiagnosisConfiguration&, uds::DiagDispatcher&, uds::DiagJobRoot&, transport::ITransportMessageProvidingListener&, transport::ITransportMessageProcessedListener*, etl::delegate<void (transport::TransportMessage const*)>)</a>+0x128>)
+
+       1a180:	7818      	ldrb	r0, [r3, #0]
+
+       1a182:	f7fd f813 	bl	171ac <<a href="../../../../util/include/util/logger/Logger.h/6be3c2c875c07680bc44f008f830057e.html">util::logger::Logger::critical(unsigned char, char const*, ...)</a>>
+
+       1a186:	e7d4      	b.n	1a132 <<a href="./83cab0e5d7c88a478bd0abb7f4e4ae66.html">uds::DiagDispatcher::dispatchIncomingRequest(transport::TransportJob&, uds::DiagnosisConfiguration&, uds::DiagDispatcher&, uds::DiagJobRoot&, transport::ITransportMessageProvidingListener&, transport::ITransportMessageProcessedListener*, etl::delegate<void (transport::TransportMessage const*)>)</a>+0xbe>
+
+       1a188:	1ffe0125 	.word	0x1ffe0125
+
+       1a18c:	000278e4 	.word	0x000278e4
+
+       1a190:	00027890 	.word	0x00027890
+
+       1a194:	1ffe0129 	.word	0x1ffe0129
+
+       1a198:	0002791c 	.word	0x0002791c
+
+       1a19c:	000278bc 	.word	0x000278bc
+
+    </pre>
+
+    
+    <pre><a href="./e00d400272b7aeeb8e6c582d70d53119.html">uds::DiagDispatcher::processQueue() (128)</a></pre>
+    
+
+    
+        <h1>Stack Worst-Case Scenarios</h1>
+        
+        <table class="table table-bordered table-hover table-condensed">
+        <thead>
+            <tr>
+                <th rowspan="2">#</th>
+                <th colspan="2" style="text-align: center">Stack</th>
+                <th colspan="2" style="text-align: center">Code</th>
+                <th rowspan="2" width="100%">Name</th>
+            </tr>
+            <tr>
+                <th class="col_size">&sum; = 292</th>
+                <th class="col_size"></th>
+                <th class="col_size">&sum;= 972</th>
+                <th class="col_size"></th>
+            </tr>
+        </thead>
+        <tbody>
+        
+            <tr>
+                <th>1</th>
+                <td class="col_size">
+                    
+                    292
+                    
+                    
+                </td>
+                <td class="col_size">
+            
+                48 
+            
+                </td>
+                <td class="col_size">
+                    
+                    
+                    972
+                    
+                    
+                </td>
+                <td class="col_size">68</td>
+                <td><a href="../../../../util/src/util/logger/Logger.cpp/d658d7c78dcca1ca01e61ef198b3eeaa.html" class="icon-function">util::logger::Logger::doLog(unsigned char, util::logger::Level, char const*, std::__va_list)</a></td>
+            </tr>
+        
+            <tr>
+                <th>2</th>
+                <td class="col_size">
+                    
+                    244
+                    
+                    
+                </td>
+                <td class="col_size">
+            
+                20 
+            
+                </td>
+                <td class="col_size">
+                    
+                    
+                    904
+                    
+                    
+                </td>
+                <td class="col_size">56</td>
+                <td><a href="../../../../util/include/util/logger/Logger.h/6be3c2c875c07680bc44f008f830057e.html" class="icon-function">util::logger::Logger::critical(unsigned char, char const*, ...)</a></td>
+            </tr>
+        
+            <tr>
+                <th>3</th>
+                <td class="col_size">
+                    
+                    224
+                    
+                    
+                </td>
+                <td class="col_size">
+            
+                24 
+            
+                </td>
+                <td class="col_size">
+                    
+                    
+                    848
+                    
+                    
+                </td>
+                <td class="col_size">80</td>
+                <td><a href="../../../../transport/src/TransportMessage.cpp/015d887b65e4e2abda950a7ebf753854.html" class="icon-function">transport::TransportMessage::setPayloadLength(unsigned short)</a></td>
+            </tr>
+        
+            <tr>
+                <th>4</th>
+                <td class="col_size">
+                    
+                    200
+                    
+                    
+                </td>
+                <td class="col_size">
+            
+                24 
+            
+                </td>
+                <td class="col_size">
+                    
+                    
+                    768
+                    
+                    
+                </td>
+                <td class="col_size">104</td>
+                <td><a href="../../../../transport/src/TransportMessage.cpp/eeb8096d53c3c24b29736af1a95f0865.html" class="icon-function">transport::TransportMessage::init(unsigned char*, unsigned long)</a></td>
+            </tr>
+        
+            <tr>
+                <th>5</th>
+                <td class="col_size">
+                    
+                    176
+                    
+                    
+                </td>
+                <td class="col_size">
+            
+                32 
+            
+                </td>
+                <td class="col_size">
+                    
+                    
+                    664
+                    
+                    
+                </td>
+                <td class="col_size">500</td>
+                <td><a href="../../../../../3rdparty/etl/include/etl/ipool.h/df4c04c5bb6ccd8dff3107da4f583e16.html" class="icon-function">uds::IncomingDiagConnection* etl::ipool::create&lt;uds::IncomingDiagConnection, unsigned char&amp;&gt;(unsigned char&amp;)</a></td>
+            </tr>
+        
+            <tr>
+                <th>6</th>
+                <td class="col_size">
+                    
+                    144
+                    
+                    
+                </td>
+                <td class="col_size">
+            
+                40 
+            
+                </td>
+                <td class="col_size">
+                    
+                </td>
+                <td class="col_size">164</td>
+                <td><a href="./66f104899e828bdba9960cba28fbfa0f.html" class="icon-function">uds::DiagDispatcher::requestIncomingConnection(transport::TransportMessage&amp;)</a></td>
+            </tr>
+        
+        </tbody>
+        
+        <tfoot>
+            <tr>
+                <th></th>
+                <th class="col_size">104
+                </th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </tfoot>
+        
+    </table>
+        
+        
+        <table class="table table-bordered table-hover table-condensed">
+        <thead>
+            <tr>
+                <th rowspan="2">#</th>
+                <th colspan="2" style="text-align: center">Stack</th>
+                <th colspan="2" style="text-align: center">Code</th>
+                <th rowspan="2" width="100%">Name</th>
+            </tr>
+            <tr>
+                <th class="col_size">&sum; = 104</th>
+                <th class="col_size"></th>
+                <th class="col_size">&sum;= 428</th>
+                <th class="col_size"></th>
+            </tr>
+        </thead>
+        <tbody>
+        
+            <tr>
+                <th>1</th>
+                <td class="col_size">
+                    
+                    104
+                    
+                    
+                </td>
+                <td class="col_size">
+            
+                48 
+            
+                </td>
+                <td class="col_size">
+                    
+                    
+                    428
+                    
+                    
+                </td>
+                <td class="col_size">300</td>
+                <td><a href="./83cab0e5d7c88a478bd0abb7f4e4ae66.html" class="icon-function">uds::DiagDispatcher::dispatchIncomingRequest(transport::TransportJob&amp;, uds::DiagnosisConfiguration&amp;, uds::DiagDispatcher&amp;, uds::DiagJobRoot&amp;, transport::ITransportMessageProvidingListener&amp;, transport::ITransportMessageProcessedListener*, etl::delegate&lt;void (transport::TransportMessage const*)&gt;)</a></td>
+            </tr>
+        
+            <tr>
+                <th>2</th>
+                <td class="col_size">
+                </td>
+                <td class="col_size">
+            
+                56 
+            
+                </td>
+                <td class="col_size">
+                    
+                </td>
+                <td class="col_size">128</td>
+                <td><a href="./e00d400272b7aeeb8e6c582d70d53119.html" class="icon-function">uds::DiagDispatcher::processQueue()</a></td>
+            </tr>
+        
+        </tbody>
+        
+    </table>
+        
+    
+
+
+        </div>
+    <div id="page-footer">
+        <hr>
+        
+            brought to you with 💖
+            by <a href="https://twitter.com/hbehrens">Heiko Behrens</a>
+            <span class="secondary">– MIT license, copyright © 2014-2025</span>
+        
+    </div>
+    </div>
+</body>
+</html>
